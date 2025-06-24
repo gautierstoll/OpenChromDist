@@ -1,0 +1,139 @@
+\doxysection{Peak\+Based\+Dist Class Reference}
+\hypertarget{classPeakBasedDist}{}\label{classPeakBasedDist}\index{PeakBasedDist@{PeakBasedDist}}
+
+
+probability distribution based peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bp\+Step (+ the length of the chromosome)  
+
+
+
+
+{\ttfamily \#include $<$Peak\+Based\+Dist.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPeakBasedDist_a8b187e7831d8330177fd0224d5b357a9}{Peak\+Based\+Dist}} (std\+::string \&\mbox{\hyperlink{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60}{chromosome}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chr\+Length}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{wind\+Size}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bp\+Step}}, const std\+::unordered\+\_\+set$<$ std\+::string $>$ \&bar\+Code\+Set)
+\begin{DoxyCompactList}\small\item\em constructor of empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{add\+Peak}} (const std\+::string \&cell\+Bar\+Code, unsigned long position, unsigned int count, std\+::optional$<$ unsigned long $>$ wind\+Eval)
+\begin{DoxyCompactList}\small\item\em update object, given a new peak, in particular the cumulative unnormalized probability distribution \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}\label{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e} 
+void {\bfseries chr\+Normalize} ()
+\begin{DoxyCompactList}\small\item\em set normalization factor as 1/(cumul probability over the whole chromosome) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2\+Binary\+File}} (const std\+::string \&bin\+File)
+\begin{DoxyCompactList}\small\item\em write object to binary file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{from\+Bin\+File}} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em static constructor, using binary file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60}\label{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60} 
+const std\+::string \& {\bfseries chromosome}
+\begin{DoxyCompactList}\small\item\em name of chromosome \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}\label{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df} 
+const unsigned long {\bfseries chr\+Length}
+\begin{DoxyCompactList}\small\item\em length of chromosome \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}\label{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96} 
+const unsigned long {\bfseries bp\+Step}
+\begin{DoxyCompactList}\small\item\em base pair step for computing cumulative distribution \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}\label{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b} 
+const unsigned long {\bfseries wind\+Size}
+\begin{DoxyCompactList}\small\item\em sd of gaussian probability density of each peak \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a83c463bd06ce459370587399ef1ed3dd}\label{classPeakBasedDist_a83c463bd06ce459370587399ef1ed3dd} 
+const std\+::unordered\+\_\+set$<$ std\+::string $>$ \& {\bfseries bar\+Codes\+Set}
+\begin{DoxyCompactList}\small\item\em set of cell names, predefined before adding peaks to the object \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}\label{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ {\bfseries cumul\+Unnorm\+Prob}
+\begin{DoxyCompactList}\small\item\em unnormalized probability distribution, for each cells \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}\label{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446} 
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries norm\+Factor}
+\begin{DoxyCompactList}\small\item\em normalization factor, should be set externally \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+probability distribution based peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bp\+Step (+ the length of the chromosome) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPeakBasedDist_a8b187e7831d8330177fd0224d5b357a9}\label{classPeakBasedDist_a8b187e7831d8330177fd0224d5b357a9} 
+\index{PeakBasedDist@{PeakBasedDist}!PeakBasedDist@{PeakBasedDist}}
+\index{PeakBasedDist@{PeakBasedDist}!PeakBasedDist@{PeakBasedDist}}
+\doxysubsubsection{\texorpdfstring{PeakBasedDist()}{PeakBasedDist()}}
+{\footnotesize\ttfamily Peak\+Based\+Dist\+::\+Peak\+Based\+Dist (\begin{DoxyParamCaption}\item[{std\+::string \&}]{chromosome,  }\item[{unsigned long}]{chr\+Length,  }\item[{unsigned long}]{wind\+Size,  }\item[{unsigned long}]{bp\+Step,  }\item[{const std\+::unordered\+\_\+set$<$ std\+::string $>$ \&}]{bar\+Code\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+constructor of empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chromosome} & chromosome name \\
+\hline
+{\em chr\+Length} & chromosome length \\
+\hline
+{\em wind\+Size} & sd of gaussion probability density for each peak \\
+\hline
+{\em bp\+Step} & evaluation point of unnormalized cumulative probability distribution \\
+\hline
+{\em bar\+Code\+Set} & names of cell, a priori definition (could be based on external QC for instance) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}\label{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657} 
+\index{PeakBasedDist@{PeakBasedDist}!addPeak@{addPeak}}
+\index{addPeak@{addPeak}!PeakBasedDist@{PeakBasedDist}}
+\doxysubsubsection{\texorpdfstring{addPeak()}{addPeak()}}
+{\footnotesize\ttfamily void Peak\+Based\+Dist\+::add\+Peak (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cell\+Bar\+Code,  }\item[{unsigned long}]{position,  }\item[{unsigned int}]{count,  }\item[{std\+::optional$<$ unsigned long $>$}]{wind\+Eval }\end{DoxyParamCaption})}
+
+
+
+update object, given a new peak, in particular the cumulative unnormalized probability distribution 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell\+Bar\+Code} & cell name. If it is not an element of bar\+Code\+Set, nothing is done \\
+\hline
+{\em position} & peak position \\
+\hline
+{\em count} & \\
+\hline
+{\em wind\+Eval} & window around peak inside which the density is supposed to be non-\/zero (approximation parameter for accelerating the distribution update) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}\label{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab} 
+\index{PeakBasedDist@{PeakBasedDist}!fromBinFile@{fromBinFile}}
+\index{fromBinFile@{fromBinFile}!PeakBasedDist@{PeakBasedDist}}
+\doxysubsubsection{\texorpdfstring{fromBinFile()}{fromBinFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} Peak\+Based\+Dist\+::from\+Bin\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{bin\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+static constructor, using binary file 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}\label{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424} 
+\index{PeakBasedDist@{PeakBasedDist}!write2BinaryFile@{write2BinaryFile}}
+\index{write2BinaryFile@{write2BinaryFile}!PeakBasedDist@{PeakBasedDist}}
+\doxysubsubsection{\texorpdfstring{write2BinaryFile()}{write2BinaryFile()}}
+{\footnotesize\ttfamily void Peak\+Based\+Dist\+::write2\+Binary\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{bin\+File }\end{DoxyParamCaption})}
+
+
+
+write object to binary file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bin\+File} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Peak\+Based\+Dist.\+h\item 
+Peak\+Based\+Dist.\+cpp\end{DoxyCompactItemize}
