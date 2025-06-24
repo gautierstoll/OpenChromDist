@@ -3,6 +3,8 @@
 C++ API for estimating gaussian-based open chromatin distribution 
 from ATAC seq data
 
+Roxygen generated [doc](https://gautierstoll.github.io/OpenChromDist/index.html)
+
 ## 🛠 Features
 
 - Class for cumulative probability estimation from peaks
