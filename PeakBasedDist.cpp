@@ -106,7 +106,7 @@ PeakBasedDist PeakBasedDist::fromBinFile(const std::string & binFile) {
 
         barCodeSetFromFile.insert(std::move(str));
     }
-    PeakBasedDist pkBaseDist = PeakBasedDist(chromosomeFromFile,chrLengthFromFile,windSizeFromFile,bpStepFromFile,barCodeSetFromFile);
+    PeakBasedDist pkBaseDist = PeakBasedDist(chromosomeFromFile,chrLengthFromFile,bpStepFromFile,windSizeFromFile,barCodeSetFromFile);
 
     uint64_t num_entries;
     ifs.read(reinterpret_cast<char*>(&num_entries), sizeof(num_entries));
@@ -123,3 +123,67 @@ PeakBasedDist PeakBasedDist::fromBinFile(const std::string & binFile) {
     //missing normalization factor
     return pkBaseDist;
 };
+
+PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std::string &barCodeFile) {
+    std::unordered_map<std::string,std::string> chromDescr;
+    std::unordered_set<std::string> barCodeSet;
+    std::string line;
+
+    std::ifstream chrFStr(chrFile);
+    if (!chrFStr) throw std::runtime_error("Failed to open file");
+    while (std::getline(chrFStr, line)) {
+        std::size_t sep_pos = line.find('=');
+        if (sep_pos != std::string::npos) {
+            std::string key = line.substr(0, sep_pos);
+            std::string value = line.substr(sep_pos + 1);
+            chromDescr[key] = value;
+        }
+    }
+    chrFStr.close();
+    std::ifstream barCFStr(barCodeFile);
+    if (barCFStr) throw std::runtime_error("Failed to open file");
+    while (std::getline(barCFStr, line)) {
+        barCodeSet.insert(line);
+    }
+    barCFStr.close();
+
+    std::string chromosome;
+    unsigned long chrLength;
+    unsigned long bpStep;
+    unsigned long windSize;
+
+    auto findIt = chromDescr.find("CHROMOSOME");
+    if (findIt != chromDescr.end()) {chromosome = findIt->second;} else {throw std::runtime_error("CHROMOSOME?");}
+
+    findIt = chromDescr.find("CHRLENGTH");
+    if (findIt != chromDescr.end()) {
+        try {
+            chrLength = std::stol(findIt->second);
+        }
+        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
+        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+    } else {throw std::runtime_error("CHRLENGTH?");}
+
+    findIt = chromDescr.find("BPSTEP");
+    if (findIt != chromDescr.end()) {
+        try {
+            bpStep = std::stol(findIt->second);
+        }
+        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
+        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+    } else {throw std::runtime_error("BPSTEP?");}
+
+    findIt = chromDescr.find("WINDSIZE");
+    if (findIt != chromDescr.end()) {
+        try {
+            windSize = std::stol(findIt->second);
+        }
+        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
+        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+    } else {throw std::runtime_error("WINDSIZE?");}
+
+
+    PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,windSize,bpStep,barCodeSet);
+    return pkBaseDist;
+};
+

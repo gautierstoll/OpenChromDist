@@ -14,7 +14,7 @@
 
 /**
  * @class PeakBasedDist
- * @brief probability distribution based peaks
+ * @brief probability distribution based on peaks
  * Each peak defines a gaussian probability density of a given sd set by a window size
  * An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
  * The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)
@@ -32,11 +32,11 @@ public:
      * @brief constructor of empty PeakBasedDist
      * @param chromosome chromosome name
      * @param chrLength chromosome length
-     * @param windSize sd of gaussion probability density for each peak
      * @param bpStep evaluation point of unnormalized cumulative probability distribution
+     * @param windSize sd of gaussion probability density for each peak
      * @param barCodeSet names of cell, a priori definition (could be based on external QC for instance)
      */
-    explicit PeakBasedDist(std::string & chromosome, unsigned long chrLength,unsigned long windSize, unsigned long bpStep,const std::unordered_set<std::string> & barCodeSet) :
+    explicit PeakBasedDist(std::string & chromosome, unsigned long chrLength,unsigned long bpStep,unsigned long windSize, const std::unordered_set<std::string> & barCodeSet) :
     chromosome(chromosome), chrLength(chrLength),bpStep(bpStep),windSize(windSize),barCodesSet(barCodesSet) {
         for (const std::string & barCode : barCodesSet) { cumulUnnormProb[barCode]= std::vector<double>((chrLength/bpStep+1),0);
             normFactor[barCode] = NAN; };
@@ -44,9 +44,21 @@ public:
 
     /**
      * @brief static constructor, using binary file
-     * @return
+     * @return a PeakBasedDist object
      */
     static PeakBasedDist fromBinFile(const std::string &);
+
+    /**
+     * @brief construct from flat files
+     * @param chrFile chromosome description
+     *  CHROMOSOME=
+     *  CHRLENGTH=
+     *  BPSTEP=
+     *  WINDSIZE=
+     * @param barCodeFile list of barcode separated by \n
+     * @return an empty PeakBasedDist object
+     */
+    static PeakBasedDist fromFlatFile(const std::string & chrFile,const std::string &barCodeFile);
 
     /**
      * @brief update object, given a new peak, in particular the cumulative unnormalized probability distribution
@@ -69,6 +81,7 @@ public:
 
     /**
      * @brief write object to binary file
+     * binary format is very compact, can only be read within fromBinFile static method
      * @param binFile
      */
     void write2BinaryFile(const std::string & binFile);
