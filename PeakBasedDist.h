@@ -1,0 +1,77 @@
+//
+// Created by gstoll on 18/06/25.
+//
+
+#ifndef PEAKBASEDDIST_H
+#define PEAKBASEDDIST_H
+#include <map>
+#include <cmath>
+#include <optional>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+
+/**
+ * @class PeakBasedDist
+ * @brief probability distribution based peaks
+ * Each peak defines a gaussian probability density of a given sd set by a window size
+ * An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
+ * The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)
+ */
+class PeakBasedDist { //many cells, a unique chromosome
+public:
+    const std::string& chromosome; ///< name of chromosome
+    const unsigned long chrLength; ///< length of chromosome
+    const unsigned long bpStep; ///< base pair step for computing cumulative distribution
+    const unsigned long windSize; ///< sd of gaussian probability density of each peak
+    const std::unordered_set<std::string>& barCodesSet; ///< set of cell names, predefined before adding peaks to the object
+    std::unordered_map<std::string,std::vector<double>> cumulUnnormProb; ///< unnormalized probability distribution, for each cells
+    std::unordered_map<std::string,double> normFactor; ///< normalization factor, should be set externally
+    /**
+     * @brief constructor of empty PeakBasedDist
+     * @param chromosome chromosome name
+     * @param chrLength chromosome length
+     * @param windSize sd of gaussion probability density for each peak
+     * @param bpStep evaluation point of unnormalized cumulative probability distribution
+     * @param barCodeSet names of cell, a priori definition (could be based on external QC for instance)
+     */
+    explicit PeakBasedDist(std::string & chromosome, unsigned long chrLength,unsigned long windSize, unsigned long bpStep,const std::unordered_set<std::string> & barCodeSet) :
+    chromosome(chromosome), chrLength(chrLength),bpStep(bpStep),windSize(windSize),barCodesSet(barCodesSet) {
+        for (const std::string & barCode : barCodesSet) { cumulUnnormProb[barCode]= std::vector<double>((chrLength/bpStep+1),0);
+            normFactor[barCode] = NAN; };
+    }
+
+    /**
+     * @brief static constructor, using binary file
+     * @return
+     */
+    static PeakBasedDist fromBinFile(const std::string &);
+
+    /**
+     * @brief update object, given a new peak, in particular the cumulative unnormalized probability distribution
+     * @param cellBarCode cell name. If it is not an element of barCodeSet, nothing is done
+     * @param position peak position
+     * @param count
+     * @param windEval window around peak inside which the density is supposed to be non-zero (approximation parameter for accelerating the distribution update)
+     */
+    void addPeak(const std::string & cellBarCode,unsigned long position,unsigned int count, std::optional<unsigned long> windEval);
+
+    /**
+     * @brief set normalization factor as 1/(cumul probability over the whole chromosome)
+     *
+     */
+    void chrNormalize() {
+        for (const std::string & barCode : barCodesSet) {
+            normFactor[barCode] = 1.0/((this->cumulUnnormProb)[barCode].back());
+        }
+    };
+
+    /**
+     * @brief write object to binary file
+     * @param binFile
+     */
+    void write2BinaryFile(const std::string & binFile);
+};
+
+#endif //PEAKBASEDDIST_H
