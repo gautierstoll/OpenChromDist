@@ -23,9 +23,9 @@ int main(int argc, char* argv[]) {
 
 
 
-    std::ifstream file(filename);
+    std::ifstream file(barcodeFile);
     if (!file.is_open()) {
-        std::cerr << "Error: Cannot open file " << filename << std::endl;
+        std::cerr << "Error: Cannot open file " << barcodeFile << std::endl;
         return 1;
     }
 

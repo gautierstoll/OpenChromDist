@@ -14,13 +14,12 @@ Roxygen generated [doc](https://gautierstoll.github.io/OpenChromDist/index.html)
 
 ### Requirements
 
-- CMake ≥ 3.x (don't know exactly yet)
+- CMake ≥ 3.28
+- ninja ≥ 1.11.1
 - C++ compiler (e.g., GCC, Clang)
 
-### Build (don't know exactly yet)
+### Build
 
 ```bash
-mkdir build
-cd build
-cmake ..
-make
+cd OpenChromDist/
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-debug
