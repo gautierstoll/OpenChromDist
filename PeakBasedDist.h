@@ -43,7 +43,7 @@ public:
     }
 
     /**
-     * @brief static constructor, using binary file
+     * @brief static constructor, using binary file (missing norm factor)
      * @return a PeakBasedDist object
      */
     static PeakBasedDist fromBinFile(const std::string &);
@@ -70,6 +70,13 @@ public:
     void addPeak(const std::string & cellBarCode,unsigned long position,unsigned int count, std::optional<unsigned long> windEval);
 
     /**
+     * @brief use a fragment tsv file that has chormosome, begin, end, barcode, count
+     * @param fragFile
+     * @param windEval window around peak inside which the density is supposed to be non-zero (approximation parameter for accelerating the distribution update)
+     */
+    void addPeaksFromFragFile(const std::string & fragFile ,const unsigned long & windEval);
+
+    /**
      * @brief set normalization factor as 1/(cumul probability over the whole chromosome)
      *
      */
@@ -80,11 +87,14 @@ public:
     };
 
     /**
-     * @brief write object to binary file
+     * @brief write object to binary file (missing norm factor)
      * binary format is very compact, can only be read within fromBinFile static method
      * @param binFile
      */
     void write2BinaryFile(const std::string & binFile);
+
+private:
+    static unsigned long strToUnsLong(const std::string &);
 };
 
 #endif //PEAKBASEDDIST_H

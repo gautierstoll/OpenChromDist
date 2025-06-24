@@ -16,16 +16,18 @@ probability distribution based on peaks Each peak defines a gaussian probability
 \begin{DoxyCompactList}\small\item\em constructor of empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{add\+Peak}} (const std\+::string \&cell\+Bar\+Code, unsigned long position, unsigned int count, std\+::optional$<$ unsigned long $>$ wind\+Eval)
 \begin{DoxyCompactList}\small\item\em update object, given a new peak, in particular the cumulative unnormalized probability distribution \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}{add\+Peaks\+From\+Frag\+File}} (const std\+::string \&frag\+File, const unsigned long \&wind\+Eval)
+\begin{DoxyCompactList}\small\item\em use a fragment tsv file that has chormosome, begin, end, barcode, count \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}\label{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e} 
 void {\bfseries chr\+Normalize} ()
 \begin{DoxyCompactList}\small\item\em set normalization factor as 1/(cumul probability over the whole chromosome) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2\+Binary\+File}} (const std\+::string \&bin\+File)
-\begin{DoxyCompactList}\small\item\em write object to binary file binary format is very compact, can only be read within from\+Bin\+File static method \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em write object to binary file (missing norm factor) binary format is very compact, can only be read within from\+Bin\+File static method \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{from\+Bin\+File}} (const std\+::string \&)
-\begin{DoxyCompactList}\small\item\em static constructor, using binary file \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em static constructor, using binary file (missing norm factor) \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}{from\+Flat\+File}} (const std\+::string \&chr\+File, const std\+::string \&bar\+Code\+File)
 \begin{DoxyCompactList}\small\item\em construct from flat files \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
@@ -105,6 +107,23 @@ update object, given a new peak, in particular the cumulative unnormalized proba
 {\em wind\+Eval} & window around peak inside which the density is supposed to be non-\/zero (approximation parameter for accelerating the distribution update) \\
 \hline
 \end{DoxyParams}
+\Hypertarget{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}\label{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b} 
+\index{PeakBasedDist@{PeakBasedDist}!addPeaksFromFragFile@{addPeaksFromFragFile}}
+\index{addPeaksFromFragFile@{addPeaksFromFragFile}!PeakBasedDist@{PeakBasedDist}}
+\doxysubsubsection{\texorpdfstring{addPeaksFromFragFile()}{addPeaksFromFragFile()}}
+{\footnotesize\ttfamily void Peak\+Based\+Dist\+::add\+Peaks\+From\+Frag\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{frag\+File,  }\item[{const unsigned long \&}]{wind\+Eval }\end{DoxyParamCaption})}
+
+
+
+use a fragment tsv file that has chormosome, begin, end, barcode, count 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frag\+File} & \\
+\hline
+{\em wind\+Eval} & window around peak inside which the density is supposed to be non-\/zero (approximation parameter for accelerating the distribution update) \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}\label{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab} 
 \index{PeakBasedDist@{PeakBasedDist}!fromBinFile@{fromBinFile}}
 \index{fromBinFile@{fromBinFile}!PeakBasedDist@{PeakBasedDist}}
@@ -113,7 +132,7 @@ update object, given a new peak, in particular the cumulative unnormalized proba
 
 
 
-static constructor, using binary file 
+static constructor, using binary file (missing norm factor) 
 
 \begin{DoxyReturn}{Returns}
 a \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object 
@@ -147,7 +166,7 @@ an empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object
 
 
 
-write object to binary file binary format is very compact, can only be read within from\+Bin\+File static method 
+write object to binary file (missing norm factor) binary format is very compact, can only be read within from\+Bin\+File static method 
 
 
 \begin{DoxyParams}{Parameters}

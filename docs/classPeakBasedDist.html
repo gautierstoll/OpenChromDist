@@ -91,18 +91,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9732e92a350cc82f469f8612efc6657" id="r_ad9732e92a350cc82f469f8612efc6657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#ad9732e92a350cc82f469f8612efc6657">addPeak</a> (const std::string &amp;cellBarCode, unsigned long position, unsigned int count, std::optional&lt; unsigned long &gt; windEval)</td></tr>
 <tr class="memdesc:ad9732e92a350cc82f469f8612efc6657"><td class="mdescLeft">&#160;</td><td class="mdescRight">update object, given a new peak, in particular the cumulative unnormalized probability distribution  <br /></td></tr>
 <tr class="separator:ad9732e92a350cc82f469f8612efc6657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1cbb045f227193a6eeb6b2ce9bf7f9b" id="r_ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#ab1cbb045f227193a6eeb6b2ce9bf7f9b">addPeaksFromFragFile</a> (const std::string &amp;fragFile, const unsigned long &amp;windEval)</td></tr>
+<tr class="memdesc:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">use a fragment tsv file that has chormosome, begin, end, barcode, count  <br /></td></tr>
+<tr class="separator:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7492cccd20f870de35ce82e8fc918e" id="r_a8b7492cccd20f870de35ce82e8fc918e"><td class="memItemLeft" align="right" valign="top"><a id="a8b7492cccd20f870de35ce82e8fc918e" name="a8b7492cccd20f870de35ce82e8fc918e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>chrNormalize</b> ()</td></tr>
 <tr class="memdesc:a8b7492cccd20f870de35ce82e8fc918e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set normalization factor as 1/(cumul probability over the whole chromosome) <br /></td></tr>
 <tr class="separator:a8b7492cccd20f870de35ce82e8fc918e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afda6689abc313f42024e1814d3b8c424" id="r_afda6689abc313f42024e1814d3b8c424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424">write2BinaryFile</a> (const std::string &amp;binFile)</td></tr>
-<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file binary format is very compact, can only be read within fromBinFile static method  <br /></td></tr>
+<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file (missing norm factor) binary format is very compact, can only be read within fromBinFile static method  <br /></td></tr>
 <tr class="separator:afda6689abc313f42024e1814d3b8c424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0efb006b7e56aca1adfd6bb8e58d14ab" id="r_a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#a0efb006b7e56aca1adfd6bb8e58d14ab">fromBinFile</a> (const std::string &amp;)</td></tr>
-<tr class="memdesc:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">static constructor, using binary file  <br /></td></tr>
+<tr class="memdesc:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">static constructor, using binary file (missing norm factor)  <br /></td></tr>
 <tr class="separator:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce1090b92329aa9d4f6bc94ed850ddb" id="r_acce1090b92329aa9d4f6bc94ed850ddb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#acce1090b92329aa9d4f6bc94ed850ddb">fromFlatFile</a> (const std::string &amp;chrFile, const std::string &amp;barCodeFile)</td></tr>
 <tr class="memdesc:acce1090b92329aa9d4f6bc94ed850ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct from flat files  <br /></td></tr>
@@ -260,6 +263,43 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 
 </div>
 </div>
+<a id="ab1cbb045f227193a6eeb6b2ce9bf7f9b" name="ab1cbb045f227193a6eeb6b2ce9bf7f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1cbb045f227193a6eeb6b2ce9bf7f9b">&#9670;&#160;</a></span>addPeaksFromFragFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PeakBasedDist::addPeaksFromFragFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fragFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long &amp;&#160;</td>
+          <td class="paramname"><em>windEval</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>use a fragment tsv file that has chormosome, begin, end, barcode, count </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fragFile</td><td></td></tr>
+    <tr><td class="paramname">windEval</td><td>window around peak inside which the density is supposed to be non-zero (approximation parameter for accelerating the distribution update) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a0efb006b7e56aca1adfd6bb8e58d14ab" name="a0efb006b7e56aca1adfd6bb8e58d14ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0efb006b7e56aca1adfd6bb8e58d14ab">&#9670;&#160;</a></span>fromBinFile()</h2>
 
@@ -284,7 +324,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 </table>
 </div><div class="memdoc">
 
-<p>static constructor, using binary file </p>
+<p>static constructor, using binary file (missing norm factor) </p>
 <dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a> object </dd></dl>
 
 </div>
@@ -352,7 +392,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
       </table>
 </div><div class="memdoc">
 
-<p>write object to binary file binary format is very compact, can only be read within fromBinFile static method </p>
+<p>write object to binary file (missing norm factor) binary format is very compact, can only be read within fromBinFile static method </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">binFile</td><td></td></tr>

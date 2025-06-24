@@ -16,23 +16,48 @@ void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long posit
         if (windEval) {windEvalUsed = windEval.value();} else {windEvalUsed = chrLength;}
 
         cumulUnnormProb[cellBarCode][0] +=
-                   count*windSize * std::numbers::pi / 2 *
-                   (erf(static_cast<double>(bpStep - position)/windSize) -
-                       erf(static_cast<double>(-position)/windSize));
+                   static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
+                   (erf(static_cast<double>(bpStep - position)/static_cast<double>(windSize)) -
+                       erf(static_cast<double>(-position)/static_cast<double>(windSize)));
 
         for (size_t indexBp = 1; (indexBp+1)*bpStep < chrLength; indexBp++ ) {
             if ( (std::abs(static_cast<long>((indexBp + 1) * bpStep - position)) < windEvalUsed)  | (std::abs(static_cast<long>(indexBp * bpStep - position)) < windEvalUsed)) {
                 cumulUnnormProb[cellBarCode][indexBp] += cumulUnnormProb[cellBarCode][indexBp-1] +
-                    count*windSize * std::numbers::pi / 2 *
-                    (erf(static_cast<double>((indexBp+1)*bpStep-position)/windSize) -
-                        erf(static_cast<double>(indexBp*bpStep-position)/windSize));
+                    static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
+                    (erf(static_cast<double>((indexBp+1)*bpStep-position)/static_cast<double>(windSize)) -
+                        erf(static_cast<double>(indexBp*bpStep-position)/static_cast<double>(windSize)));
             }
         }
-        cumulUnnormProb[cellBarCode][chrLength/bpStep] = count*windSize * std::numbers::pi / 2 *
-            (erf(static_cast<double>(chrLength-position)/windSize) -
-                erf(static_cast<double>(chrLength-(chrLength % bpStep)-position)/windSize));
+        cumulUnnormProb[cellBarCode][chrLength/bpStep] = static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
+            (erf(static_cast<double>(chrLength-position)/static_cast<double>(windSize)) -
+                erf(static_cast<double>(chrLength-(chrLength % bpStep)-position)/static_cast<double>(windSize)));
     }
 };
+
+void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsigned long & windEval) {
+    std::ifstream fragFStr(fragFile);
+    if (!fragFStr) throw std::runtime_error("Failed to open file");
+    std::string line;
+    while (std::getline(fragFStr, line)) {
+        if (!line.empty() && line[0] != '#') {
+            std::stringstream lineStream(line);
+            std::vector<std::string> tokenVector;
+            std::string token;
+            while (getline(lineStream, token,'\t')) {
+                tokenVector.push_back(token);
+            }
+            if (tokenVector.size() >= 5) {
+                if (tokenVector[0] == chromosome) {
+                    addPeak(tokenVector[3],
+                        (strToUnsLong(tokenVector[1])+strToUnsLong(tokenVector[2]))/2,
+                        strToUnsLong(tokenVector[4]),
+                        windEval);
+            }
+            } else {throw std::runtime_error("Bad line in fragment file "+line);}
+        }
+    }
+};
+
 
 void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
     std::ofstream ofs(binFile, std::ios::binary);
@@ -53,7 +78,8 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
     uint64_t set_size = barCodesSet.size();
     ofs.write(reinterpret_cast<const char*>(&set_size), sizeof(set_size));
     for (const std::string& str : barCodesSet) {
-        uint32_t len = str.size();
+        //uint32_t len = str.size();
+        len = str.size();
         ofs.write(reinterpret_cast<const char*>(&len), sizeof(len));
         ofs.write(str.data(), len);
     }
@@ -98,7 +124,7 @@ PeakBasedDist PeakBasedDist::fromBinFile(const std::string & binFile) {
     ifs.read(reinterpret_cast<char*>(&set_size), sizeof(set_size));
 
     for (uint64_t i = 0; i < set_size; ++i) {
-        uint32_t len;
+        //uint32_t len;
         ifs.read(reinterpret_cast<char*>(&len), sizeof(len));
 
         std::string str(len, '\0');
@@ -157,33 +183,30 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
 
     findIt = chromDescr.find("CHRLENGTH");
     if (findIt != chromDescr.end()) {
-        try {
-            chrLength = std::stol(findIt->second);
-        }
-        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
-        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+            chrLength = strToUnsLong(findIt->second);
     } else {throw std::runtime_error("CHRLENGTH?");}
 
     findIt = chromDescr.find("BPSTEP");
     if (findIt != chromDescr.end()) {
-        try {
-            bpStep = std::stol(findIt->second);
-        }
-        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
-        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+            bpStep = strToUnsLong(findIt->second);
     } else {throw std::runtime_error("BPSTEP?");}
 
     findIt = chromDescr.find("WINDSIZE");
     if (findIt != chromDescr.end()) {
-        try {
-            windSize = std::stol(findIt->second);
-        }
-        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert" + findIt->second); }
-        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range" + findIt->second); }
+            windSize = strToUnsLong(findIt->second);
     } else {throw std::runtime_error("WINDSIZE?");}
 
 
-    PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,windSize,bpStep,barCodeSet);
+    PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,bpStep,windSize,barCodeSet);
     return pkBaseDist;
 };
 
+unsigned long PeakBasedDist::strToUnsLong(const std::string & str) {
+    unsigned long unLong;
+    try {
+        unLong = std::stol(str);
+    }
+    catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert " + str); }
+    catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range " + str); }
+    return unLong;
+};
