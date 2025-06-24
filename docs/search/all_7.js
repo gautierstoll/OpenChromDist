@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['normfactor_0',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
+  ['requirements_0',['Requirements',['../md_README.html#autotoc_md3',1,'']]],
+  ['run_1',['📦 Build and Run',['../md_README.html#autotoc_md2',1,'']]]
 ];

@@ -73,6 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> C++ API for estimating gaussian-based open chromatin distribution from ATAC seq data</p>
+<p>Roxygen generated <a href="https://gautierstoll.github.io/OpenChromDist/index.html">doc</a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 🛠 Features</h1>
 <ul>
@@ -83,12 +84,13 @@ $(function() {
 <h2><a class="anchor" id="autotoc_md3"></a>
 Requirements</h2>
 <ul>
-<li>CMake ≥ 3.x (don't know exactly yet)</li>
+<li>CMake ≥ 3.28</li>
+<li>ninja ≥ 1.11.1</li>
 <li>C++ compiler (e.g., GCC, Clang)</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md4"></a>
-Build (don't know exactly yet)</h2>
-<p>```bash mkdir build cd build cmake .. make </p>
+Build</h2>
+<p>```bash cd OpenChromDist/ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-debug </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

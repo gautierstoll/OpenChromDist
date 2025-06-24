@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exactly_20yet_0',['Build (don&apos;t know exactly yet)',['../md_README.html#autotoc_md4',1,'']]]
+  ['normfactor_0',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
 ];
