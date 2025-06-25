@@ -36,6 +36,8 @@ int main(int argc, char* argv[]) {
             } else {
                 std::cerr << "Missing arguments\n"
                         << "OpenChromDist\tchromFile\tbarCodeFile\tfragFile\twindEval\toutBindFile\n"
+                << "chromFile contains\nCHROMOSOME=\nCHRLENGTH=\nBPSTEP=\nWINDSIZE=\n"
+                << "barCodeFile contains a list of barcode separated by newline\n"
                         << "or \n"
                     <<  "OpenChromDist\t-l\tbinFile\n"
                     << std::endl;
@@ -44,9 +46,12 @@ int main(int argc, char* argv[]) {
         }
     } else {
         std::cerr << "Missing arguments\n"
-                    << "OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n"
-                    << "or\n"
-                <<  "OpenChromDist -l binFile\n"
+        << "For creating the distribution:\n"
+                    << " OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n"
+        << "  chromFile contains\n   CHROMOSOME=\n   CHRLENGTH=\n   BPSTEP=\n   WINDSIZE=\n"
+                << "  barCodeFile contains a list of barcode separated by newline\n\n"
+                    << "For downloading a distribution\n"
+                <<  " OpenChromDist -l binFile\n"
                 << std::endl;
         return 1;
     }
