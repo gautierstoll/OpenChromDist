@@ -93,7 +93,6 @@ public:
      */
     void write2BinaryFile(const std::string & binFile);
 
-private:
     static unsigned long strToUnsLong(const std::string &);
 };
 

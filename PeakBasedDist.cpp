@@ -58,7 +58,6 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
     }
 };
 
-
 void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
     std::ofstream ofs(binFile, std::ios::binary);
     if (!ofs) throw std::runtime_error("Failed to open file");
@@ -96,7 +95,6 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
         ofs.write(reinterpret_cast<const char*>(&vec_len), sizeof(vec_len));
         ofs.write(reinterpret_cast<const char*>(vec.data()), vec_len * sizeof(double));
     }
-
     // missing normalization factor
 }
 
@@ -195,7 +193,6 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     if (findIt != chromDescr.end()) {
             windSize = strToUnsLong(findIt->second);
     } else {throw std::runtime_error("WINDSIZE?");}
-
 
     PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,bpStep,windSize,barCodeSet);
     return pkBaseDist;
