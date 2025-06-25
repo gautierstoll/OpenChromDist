@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
                 std::string fragFile = argv[3];
                 std::cout << "fragFile: " << fragFile << std::endl;
                 std::string windEvalStr = argv[4];
-                std::cout << "windEvel: " << windEvalStr << std::endl;
+                std::cout << "windEval: " << windEvalStr << std::endl;
                 std::string outBindFile = argv[5];
                 std::cout << "outBindFile: " << outBindFile << std::endl;
 
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
                 return 0;
             } else {
                 std::cerr << "Missing arguments\n"
-                        << "OpenChromDist\tchromFile\tbarCodeFile\tfragFile\twindEvel\toutBindFile\n"
+                        << "OpenChromDist\tchromFile\tbarCodeFile\tfragFile\twindEval\toutBindFile\n"
                         << "or \n"
                     <<  "OpenChromDist\t-l\tbinFile\n"
                     << std::endl;
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
         }
     } else {
         std::cerr << "Missing arguments\n"
-                    << "OpenChromDist chromFile barCodeFile fragFile windEvel outBindFile\n"
+                    << "OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n"
                     << "or\n"
                 <<  "OpenChromDist -l binFile\n"
                 << std::endl;
