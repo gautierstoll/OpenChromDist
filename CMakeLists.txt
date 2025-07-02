@@ -3,9 +3,13 @@ project(OpenChromDist)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(OpenChromDist main.cpp
-        PeakBasedDist.cpp
-        PeakBasedDist.h)
+# add_executable(OpenChromDist main.cpp
+#        PeakBasedDist.cpp
+#        PeakBasedDist.h
+ #       SinglePeakDist.cpp
+ #       SinglePeakDist.h
+ #       BarcodePeakDist.cpp
+ #       BarcodePeakDist.h)
 
 add_executable(OpenChromDistTest maintTest.cpp
         PeakBasedDist.cpp

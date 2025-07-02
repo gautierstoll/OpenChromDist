@@ -7,11 +7,12 @@
 #include <chrono>
 #include <cmath>
 #include <fstream>
+#include <iostream>
 #include <optional>
 
 void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long position, unsigned int count, std::optional<unsigned long> windEval) {
     // add test for cellBarCode name
-    if (barCodesSet.contains(cellBarCode)) {
+    if (barCodeSet.contains(cellBarCode)) {
         unsigned long windEvalUsed;
         if (windEval) {windEvalUsed = windEval.value();} else {windEvalUsed = chrLength;}
 
@@ -36,7 +37,7 @@ void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long posit
 
 void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsigned long & windEval) {
     std::ifstream fragFStr(fragFile);
-    if (!fragFStr) throw std::runtime_error("Failed to open file");
+    if (!fragFStr.is_open()) throw std::runtime_error("Failed to open fragment file");
     std::string line;
     while (std::getline(fragFStr, line)) {
         if (!line.empty() && line[0] != '#') {
@@ -60,7 +61,7 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
 
 void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
     std::ofstream ofs(binFile, std::ios::binary);
-    if (!ofs) throw std::runtime_error("Failed to open file");
+    if (!ofs.is_open()) throw std::runtime_error("Failed to open binary file");
 
     uint32_t len = chromosome.size();
     ofs.write(reinterpret_cast<const char*>(&len), sizeof(len));
@@ -74,9 +75,9 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
 
     ofs.write(reinterpret_cast<const char*>(&windSize), sizeof(unsigned long));
 
-    uint64_t set_size = barCodesSet.size();
+    uint64_t set_size = barCodeSet.size();
     ofs.write(reinterpret_cast<const char*>(&set_size), sizeof(set_size));
-    for (const std::string& str : barCodesSet) {
+    for (const std::string& str : barCodeSet) {
         //uint32_t len = str.size();
         len = str.size();
         ofs.write(reinterpret_cast<const char*>(&len), sizeof(len));
@@ -152,9 +153,8 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     std::unordered_map<std::string,std::string> chromDescr;
     std::unordered_set<std::string> barCodeSet;
     std::string line;
-
     std::ifstream chrFStr(chrFile);
-    if (!chrFStr) throw std::runtime_error("Failed to open file");
+    if (!chrFStr.is_open()) throw std::runtime_error("Failed to open chromosome file");
     while (std::getline(chrFStr, line)) {
         std::size_t sep_pos = line.find('=');
         if (sep_pos != std::string::npos) {
@@ -165,7 +165,7 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     }
     chrFStr.close();
     std::ifstream barCFStr(barCodeFile);
-    if (barCFStr) throw std::runtime_error("Failed to open file");
+    if (!barCFStr.is_open()) throw std::runtime_error("Failed to open barcode file");
     while (std::getline(barCFStr, line)) {
         barCodeSet.insert(line);
     }
@@ -195,6 +195,7 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     } else {throw std::runtime_error("WINDSIZE?");}
 
     PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,bpStep,windSize,barCodeSet);
+    std::cout << "Class created" << std::endl;
     return pkBaseDist;
 };
 

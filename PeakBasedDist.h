@@ -6,7 +6,9 @@
 #define PEAKBASEDDIST_H
 #include <map>
 #include <cmath>
+#include <iostream>
 #include <optional>
+#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -21,11 +23,11 @@
  */
 class PeakBasedDist { //many cells, a unique chromosome
 public:
-    const std::string& chromosome; ///< name of chromosome
+    const std::string chromosome; ///< name of chromosome
     const unsigned long chrLength; ///< length of chromosome
     const unsigned long bpStep; ///< base pair step for computing cumulative distribution
     const unsigned long windSize; ///< sd of gaussian probability density of each peak
-    const std::unordered_set<std::string>& barCodesSet; ///< set of cell names, predefined before adding peaks to the object
+    const std::unordered_set<std::string> barCodeSet; ///< set of cell names, predefined before adding peaks to the object
     std::unordered_map<std::string,std::vector<double>> cumulUnnormProb; ///< unnormalized probability distribution, for each cells
     std::unordered_map<std::string,double> normFactor; ///< normalization factor, should be set externally
     /**
@@ -37,8 +39,8 @@ public:
      * @param barCodeSet names of cell, a priori definition (could be based on external QC for instance)
      */
     explicit PeakBasedDist(std::string & chromosome, unsigned long chrLength,unsigned long bpStep,unsigned long windSize, const std::unordered_set<std::string> & barCodeSet) :
-    chromosome(chromosome), chrLength(chrLength),bpStep(bpStep),windSize(windSize),barCodesSet(barCodesSet) {
-        for (const std::string & barCode : barCodesSet) { cumulUnnormProb[barCode]= std::vector<double>((chrLength/bpStep+1),0);
+    chromosome(chromosome), chrLength(chrLength),bpStep(bpStep),windSize(windSize),barCodeSet(barCodeSet) {
+        for (const std::string & barCode : barCodeSet) { cumulUnnormProb[barCode]= std::vector<double>((chrLength/bpStep+1),0);
             normFactor[barCode] = NAN; };
     }
 
@@ -81,7 +83,7 @@ public:
      *
      */
     void chrNormalize() {
-        for (const std::string & barCode : barCodesSet) {
+        for (const std::string & barCode : barCodeSet) {
             normFactor[barCode] = 1.0/((this->cumulUnnormProb)[barCode].back());
         }
     };
