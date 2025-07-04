@@ -13,25 +13,31 @@
 void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long position, unsigned int count, std::optional<unsigned long> windEval) {
     // add test for cellBarCode name
     if (barCodeSet.contains(cellBarCode)) {
-        unsigned long windEvalUsed;
-        if (windEval) {windEvalUsed = windEval.value();} else {windEvalUsed = chrLength;}
+        long windEval4Test; // need long testing evalualion window
+        long position4Test =  static_cast<long>(position);
+        long bpStep4Test = static_cast<long>(bpStep);
+        double prevStepCumul = 0.0; // cumulative probability of previous step, for the given peak
+        if (windEval) {windEval4Test = static_cast<long>(windEval.value());} else {windEval4Test = static_cast<long>(chrLength);}
 
-        cumulUnnormProb[cellBarCode][0] +=
-                   static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
-                   (erf(static_cast<double>(bpStep - position)/static_cast<double>(windSize)) -
-                       erf(static_cast<double>(-position)/static_cast<double>(windSize)));
-
-        for (size_t indexBp = 1; (indexBp+1)*bpStep < chrLength; indexBp++ ) {
-            if ( (std::abs(static_cast<long>((indexBp + 1) * bpStep - position)) < windEvalUsed)  | (std::abs(static_cast<long>(indexBp * bpStep - position)) < windEvalUsed)) {
-                cumulUnnormProb[cellBarCode][indexBp] += cumulUnnormProb[cellBarCode][indexBp-1] +
+        for (long indexBp = 0; (indexBp+1)*bpStep < static_cast<long>(chrLength); indexBp++ ) { // index is signed long for testing
+            if (std::max( (position4Test - windEval4Test),indexBp * bpStep4Test ) < std::min((position4Test + windEval4Test),(indexBp+1) * bpStep4Test)) {
+                prevStepCumul  +=
                     static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
-                    (erf(static_cast<double>((indexBp+1)*bpStep-position)/static_cast<double>(windSize)) -
-                        erf(static_cast<double>(indexBp*bpStep-position)/static_cast<double>(windSize)));
+                    (erf(static_cast<double>((indexBp+1)*bpStep4Test-position4Test)/static_cast<double>(windSize)) -
+                        erf(static_cast<double>(indexBp*bpStep4Test-position4Test)/static_cast<double>(windSize)));
             }
+                cumulUnnormProb[cellBarCode][indexBp] += prevStepCumul;
         }
-        cumulUnnormProb[cellBarCode][chrLength/bpStep] = static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
-            (erf(static_cast<double>(chrLength-position)/static_cast<double>(windSize)) -
-                erf(static_cast<double>(chrLength-(chrLength % bpStep)-position)/static_cast<double>(windSize)));
+
+        if (std::max( (position4Test - windEval4Test),static_cast<long>(chrLength-(chrLength % bpStep))) <
+            std::min((position4Test + windEval4Test),static_cast<long>(chrLength))) {
+
+            cumulUnnormProb[cellBarCode][chrLength/bpStep] = prevStepCumul +
+                static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
+                (erf(static_cast<double>(chrLength-position)/static_cast<double>(windSize)) -
+                    erf(static_cast<double>(chrLength-(chrLength % bpStep)-position)/static_cast<double>(windSize)));
+        }
+        else {cumulUnnormProb[cellBarCode][chrLength/bpStep] = prevStepCumul;}
     }
 };
 
