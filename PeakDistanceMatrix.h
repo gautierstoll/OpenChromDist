@@ -19,10 +19,10 @@
  */
 class PeakDistanceMatrix {
     // using vector so they can defines the indices
+public :
     std::vector<std::string> barCodeVect1; ///< vector of first barCodes
     std::vector<std::string> barCodeVect2; ///< vector of second barCodes
     std::vector<double> distanceFlatMatrix; ///< flat matrix of barCodes distrances, filles by outer-loop over first vector and inner-loop over second vector
-public :
     /**
      * @brief construct vector of barcodes and flat matrix
      * @param bareCodeSet1 First list of bareCodes

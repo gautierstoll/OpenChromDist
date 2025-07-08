@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normfactor_0',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
+  ['distanceflatmatrix_0',['distanceFlatMatrix',['../classPeakDistanceMatrix.html#a255b114c12efc7a7b0fdf78e1a034df4',1,'PeakDistanceMatrix']]]
 ];

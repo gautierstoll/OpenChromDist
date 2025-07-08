@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['features_0',['🛠 Features',['../md_README.html#autotoc_md1',1,'']]],
-  ['frombinfile_1',['fromBinFile',['../classPeakBasedDist.html#a0efb006b7e56aca1adfd6bb8e58d14ab',1,'PeakBasedDist']]],
-  ['fromflatfile_2',['fromFlatFile',['../classPeakBasedDist.html#acce1090b92329aa9d4f6bc94ed850ddb',1,'PeakBasedDist']]]
+  ['distanceflatmatrix_0',['distanceFlatMatrix',['../classPeakDistanceMatrix.html#a255b114c12efc7a7b0fdf78e1a034df4',1,'PeakDistanceMatrix']]]
 ];

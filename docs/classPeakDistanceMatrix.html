@@ -71,6 +71,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classPeakDistanceMatrix-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PeakDistanceMatrix Class Reference</div></div>
 </div><!--header-->
@@ -95,6 +96,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2029bd5b83c4140c49bcaff7908eaced" id="r_a2029bd5b83c4140c49bcaff7908eaced"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakDistanceMatrix.html#a2029bd5b83c4140c49bcaff7908eaced">PeakDistanceMatrix</a> (const std::unordered_set&lt; std::string &gt; &amp;bareCodeSet, const <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a> &amp;pBasedDist, const std::string &amp;outFile)</td></tr>
 <tr class="memdesc:a2029bd5b83c4140c49bcaff7908eaced"><td class="mdescLeft">&#160;</td><td class="mdescRight">For distances between the same dataset.  <br /></td></tr>
 <tr class="separator:a2029bd5b83c4140c49bcaff7908eaced"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a33377da38a5f0030dc3ef1d856329160" id="r_a33377da38a5f0030dc3ef1d856329160"><td class="memItemLeft" align="right" valign="top"><a id="a33377da38a5f0030dc3ef1d856329160" name="a33377da38a5f0030dc3ef1d856329160"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>barCodeVect1</b></td></tr>
+<tr class="memdesc:a33377da38a5f0030dc3ef1d856329160"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of first barCodes <br /></td></tr>
+<tr class="separator:a33377da38a5f0030dc3ef1d856329160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac778e0c2a8add4a8bd31fe93dd55843c" id="r_ac778e0c2a8add4a8bd31fe93dd55843c"><td class="memItemLeft" align="right" valign="top"><a id="ac778e0c2a8add4a8bd31fe93dd55843c" name="ac778e0c2a8add4a8bd31fe93dd55843c"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>barCodeVect2</b></td></tr>
+<tr class="memdesc:ac778e0c2a8add4a8bd31fe93dd55843c"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector of second barCodes <br /></td></tr>
+<tr class="separator:ac778e0c2a8add4a8bd31fe93dd55843c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255b114c12efc7a7b0fdf78e1a034df4" id="r_a255b114c12efc7a7b0fdf78e1a034df4"><td class="memItemLeft" align="right" valign="top"><a id="a255b114c12efc7a7b0fdf78e1a034df4" name="a255b114c12efc7a7b0fdf78e1a034df4"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>distanceFlatMatrix</b></td></tr>
+<tr class="memdesc:a255b114c12efc7a7b0fdf78e1a034df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">flat matrix of barCodes distrances, filles by outer-loop over first vector and inner-loop over second vector <br /></td></tr>
+<tr class="separator:a255b114c12efc7a7b0fdf78e1a034df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>compute kolmogorov-smirnov distance given the cumulative probability distribution </p>
