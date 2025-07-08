@@ -11,7 +11,8 @@
 #include "PeakBasedDist.h"
 
 /**
- * @class compute kolmogorov-smirnov distance given the cumulative probability distribution
+ * @class PeakDistanceMatrix
+ * @brief compute kolmogorov-smirnov distance given the cumulative probability distribution
  * @brief computed in constructor, either keeping the flat matrix in memory or wriring to a .csv file
  * @warning list of barcodes should be in Peak Based distribution
  * @warning cumulative probability distribution should be normalized before
