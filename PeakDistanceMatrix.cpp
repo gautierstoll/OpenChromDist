@@ -1,0 +1,50 @@
+//
+// Created by gstoll on 07/07/25.
+//
+
+#include "PeakDistanceMatrix.h"
+
+#include <fstream>
+
+PeakDistanceMatrix::PeakDistanceMatrix(const std::unordered_set<std::string> & bareCodeSet1,const std::unordered_set<std::string> & bareCodeSet2,
+                                       const PeakBasedDist & pBasedDist1,const PeakBasedDist & pBasedDist2,const std::optional<std::string> & oPOutFile) {
+    std::ofstream outFile;
+    if (oPOutFile.has_value()) {
+        outFile.open(oPOutFile.value());
+        if (!outFile.is_open()) {throw std::runtime_error("cannot open file " + oPOutFile.value());}
+        outFile << "#BarCode1\tBarCod2\tDistance" << std::endl;
+    }
+    if (pBasedDist1.bpStep != pBasedDist2.bpStep) {
+        throw std::invalid_argument("Not equal base pair step " +
+            std::to_string(pBasedDist1.bpStep) + " " + std::to_string(pBasedDist2.bpStep));
+    }
+    if (pBasedDist1.chrLength != pBasedDist2.chrLength) {
+        throw std::invalid_argument("Not equal chromosome length"  +
+            std::to_string(pBasedDist1.chrLength) + " " + std::to_string(pBasedDist2.chrLength));
+    }
+
+    barCodeVect1.reserve(bareCodeSet1.size());
+    barCodeVect2.reserve(bareCodeSet2.size());
+    if (!oPOutFile.has_value()){distanceFlatMatrix.reserve(bareCodeSet1.size()*(bareCodeSet2.size()));}
+    for (std::string bareCode1:bareCodeSet1) {
+        barCodeVect1.push_back(bareCode1);
+        auto itBareCode1 = pBasedDist1.cumulUnnormProb.find(bareCode1);
+        if (itBareCode1 == pBasedDist1.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode1 + " not found in first distribution");}
+        for (std::string bareCode2:bareCodeSet2) {
+            barCodeVect2.push_back(bareCode2);
+            auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode1);
+            if (itBareCode2 == pBasedDist2.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode2 + " not found in second distribution");}
+            double maxAbs = 0.0;
+            for (size_t cumlProbIndex=0;cumlProbIndex< (itBareCode1 -> second).size();cumlProbIndex++) {
+                maxAbs = std::max(maxAbs,std::abs((itBareCode1 -> second)[cumlProbIndex] - (itBareCode2 -> second)[cumlProbIndex]));
+            }
+            if (oPOutFile.has_value()) {
+             outFile << bareCode1 << "\t" << bareCode2 << "\t" << maxAbs << std::endl;
+            } else {
+                distanceFlatMatrix.push_back(maxAbs);
+            }
+        }
+    }
+outFile.close();
+
+}
