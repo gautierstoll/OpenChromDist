@@ -20,9 +20,15 @@ int main(int argc, char* argv[]) {
     std::cout << "Chromosome:" << pkBsDist.chromosome << std::endl;
 
 
-    pkBsDist.addPeaksFromFragFile(fragFile,1000000);
+    pkBsDist.addPeaksFromFragFile(fragFile,1000);
     std::cout << "Number of basCodes hits:" << pkBsDist.cumulUnnormProb.size() << std::endl;
                 // pkBsDist.write2BinaryFile(outBindFile);
-                return 0;
 
+    for (const auto & [barCode,cumulProb] : pkBsDist.cumulUnnormProb) {;
+     std::cout << barCode << std::endl;
+     for (const auto & prob : cumulProb) {
+         std::cout << prob << std::endl;
+     }
+    }
+    return 0;
 }

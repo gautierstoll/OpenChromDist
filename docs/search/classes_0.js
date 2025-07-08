@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['peakbaseddist_0',['PeakBasedDist',['../classPeakBasedDist.html',1,'']]]
+  ['barcodepeakdist_0',['BarcodePeakDist',['../classBarcodePeakDist.html',1,'']]]
 ];

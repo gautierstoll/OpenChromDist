@@ -12,7 +12,7 @@ probability distribution based on peaks Each peak defines a gaussian probability
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0}{Peak\+Based\+Dist}} (std\+::string \&\mbox{\hyperlink{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60}{chromosome}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chr\+Length}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bp\+Step}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{wind\+Size}}, const std\+::unordered\+\_\+set$<$ std\+::string $>$ \&bar\+Code\+Set)
+\mbox{\hyperlink{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0}{Peak\+Based\+Dist}} (std\+::string \&\mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chr\+Length}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bp\+Step}}, unsigned long \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{wind\+Size}}, const std\+::unordered\+\_\+set$<$ std\+::string $>$ \&\mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{bar\+Code\+Set}})
 \begin{DoxyCompactList}\small\item\em constructor of empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{add\+Peak}} (const std\+::string \&cell\+Bar\+Code, unsigned long position, unsigned int count, std\+::optional$<$ unsigned long $>$ wind\+Eval)
 \begin{DoxyCompactList}\small\item\em update object, given a new peak, in particular the cumulative unnormalized probability distribution \end{DoxyCompactList}\item 
@@ -29,12 +29,15 @@ void \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{writ
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{from\+Bin\+File}} (const std\+::string \&)
 \begin{DoxyCompactList}\small\item\em static constructor, using binary file (missing norm factor) \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}{from\+Flat\+File}} (const std\+::string \&chr\+File, const std\+::string \&bar\+Code\+File)
-\begin{DoxyCompactList}\small\item\em construct from flat files \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em construct from flat files \end{DoxyCompactList}\item 
+\Hypertarget{classPeakBasedDist_a24c67fca616b1c831e04891e72a1503f}\label{classPeakBasedDist_a24c67fca616b1c831e04891e72a1503f} 
+static unsigned long {\bfseries str\+To\+Uns\+Long} (const std\+::string \&)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60}\label{classPeakBasedDist_a30922e4246010d34213202b1f60b9f60} 
-const std\+::string \& {\bfseries chromosome}
+\Hypertarget{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}\label{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09} 
+const std\+::string {\bfseries chromosome}
 \begin{DoxyCompactList}\small\item\em name of chromosome \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}\label{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df} 
 const unsigned long {\bfseries chr\+Length}
@@ -45,8 +48,8 @@ const unsigned long {\bfseries bp\+Step}
 \Hypertarget{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}\label{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b} 
 const unsigned long {\bfseries wind\+Size}
 \begin{DoxyCompactList}\small\item\em sd of gaussian probability density of each peak \end{DoxyCompactList}\item 
-\Hypertarget{classPeakBasedDist_a83c463bd06ce459370587399ef1ed3dd}\label{classPeakBasedDist_a83c463bd06ce459370587399ef1ed3dd} 
-const std\+::unordered\+\_\+set$<$ std\+::string $>$ \& {\bfseries bar\+Codes\+Set}
+\Hypertarget{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}\label{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59} 
+const std\+::unordered\+\_\+set$<$ std\+::string $>$ {\bfseries bar\+Code\+Set}
 \begin{DoxyCompactList}\small\item\em set of cell names, predefined before adding peaks to the object \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}\label{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f} 
 std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ {\bfseries cumul\+Unnorm\+Prob}

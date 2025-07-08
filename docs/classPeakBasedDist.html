@@ -85,7 +85,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e56d3c0e4297a4c1f776c3427702fd0" id="r_a9e56d3c0e4297a4c1f776c3427702fd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#a9e56d3c0e4297a4c1f776c3427702fd0">PeakBasedDist</a> (std::string &amp;<a class="el" href="classPeakBasedDist.html#a30922e4246010d34213202b1f60b9f60">chromosome</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a4028fe05cac1967ebd39768c6517e9df">chrLength</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a6055b04ce2c49fd846ee1eb8c907db96">bpStep</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a31f64c59a6af28e043f8642c5170dd5b">windSize</a>, const std::unordered_set&lt; std::string &gt; &amp;barCodeSet)</td></tr>
+<tr class="memitem:a9e56d3c0e4297a4c1f776c3427702fd0" id="r_a9e56d3c0e4297a4c1f776c3427702fd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#a9e56d3c0e4297a4c1f776c3427702fd0">PeakBasedDist</a> (std::string &amp;<a class="el" href="classPeakBasedDist.html#a31c8117337e766c10d8d8b6e7e4bee09">chromosome</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a4028fe05cac1967ebd39768c6517e9df">chrLength</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a6055b04ce2c49fd846ee1eb8c907db96">bpStep</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a31f64c59a6af28e043f8642c5170dd5b">windSize</a>, const std::unordered_set&lt; std::string &gt; &amp;<a class="el" href="classPeakBasedDist.html#a67bcb2fb67935c3ccabedc4450faac59">barCodeSet</a>)</td></tr>
 <tr class="memdesc:a9e56d3c0e4297a4c1f776c3427702fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of empty <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a>  <br /></td></tr>
 <tr class="separator:a9e56d3c0e4297a4c1f776c3427702fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9732e92a350cc82f469f8612efc6657" id="r_ad9732e92a350cc82f469f8612efc6657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#ad9732e92a350cc82f469f8612efc6657">addPeak</a> (const std::string &amp;cellBarCode, unsigned long position, unsigned int count, std::optional&lt; unsigned long &gt; windEval)</td></tr>
@@ -110,13 +110,16 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:acce1090b92329aa9d4f6bc94ed850ddb" id="r_acce1090b92329aa9d4f6bc94ed850ddb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#acce1090b92329aa9d4f6bc94ed850ddb">fromFlatFile</a> (const std::string &amp;chrFile, const std::string &amp;barCodeFile)</td></tr>
 <tr class="memdesc:acce1090b92329aa9d4f6bc94ed850ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct from flat files  <br /></td></tr>
 <tr class="separator:acce1090b92329aa9d4f6bc94ed850ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c67fca616b1c831e04891e72a1503f" id="r_a24c67fca616b1c831e04891e72a1503f"><td class="memItemLeft" align="right" valign="top"><a id="a24c67fca616b1c831e04891e72a1503f" name="a24c67fca616b1c831e04891e72a1503f"></a>
+static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>strToUnsLong</b> (const std::string &amp;)</td></tr>
+<tr class="separator:a24c67fca616b1c831e04891e72a1503f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a30922e4246010d34213202b1f60b9f60" id="r_a30922e4246010d34213202b1f60b9f60"><td class="memItemLeft" align="right" valign="top"><a id="a30922e4246010d34213202b1f60b9f60" name="a30922e4246010d34213202b1f60b9f60"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>chromosome</b></td></tr>
-<tr class="memdesc:a30922e4246010d34213202b1f60b9f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of chromosome <br /></td></tr>
-<tr class="separator:a30922e4246010d34213202b1f60b9f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c8117337e766c10d8d8b6e7e4bee09" id="r_a31c8117337e766c10d8d8b6e7e4bee09"><td class="memItemLeft" align="right" valign="top"><a id="a31c8117337e766c10d8d8b6e7e4bee09" name="a31c8117337e766c10d8d8b6e7e4bee09"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>chromosome</b></td></tr>
+<tr class="memdesc:a31c8117337e766c10d8d8b6e7e4bee09"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of chromosome <br /></td></tr>
+<tr class="separator:a31c8117337e766c10d8d8b6e7e4bee09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4028fe05cac1967ebd39768c6517e9df" id="r_a4028fe05cac1967ebd39768c6517e9df"><td class="memItemLeft" align="right" valign="top"><a id="a4028fe05cac1967ebd39768c6517e9df" name="a4028fe05cac1967ebd39768c6517e9df"></a>
 const unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>chrLength</b></td></tr>
 <tr class="memdesc:a4028fe05cac1967ebd39768c6517e9df"><td class="mdescLeft">&#160;</td><td class="mdescRight">length of chromosome <br /></td></tr>
@@ -129,10 +132,10 @@ const unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>bpStep
 const unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>windSize</b></td></tr>
 <tr class="memdesc:a31f64c59a6af28e043f8642c5170dd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">sd of gaussian probability density of each peak <br /></td></tr>
 <tr class="separator:a31f64c59a6af28e043f8642c5170dd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83c463bd06ce459370587399ef1ed3dd" id="r_a83c463bd06ce459370587399ef1ed3dd"><td class="memItemLeft" align="right" valign="top"><a id="a83c463bd06ce459370587399ef1ed3dd" name="a83c463bd06ce459370587399ef1ed3dd"></a>
-const std::unordered_set&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>barCodesSet</b></td></tr>
-<tr class="memdesc:a83c463bd06ce459370587399ef1ed3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">set of cell names, predefined before adding peaks to the object <br /></td></tr>
-<tr class="separator:a83c463bd06ce459370587399ef1ed3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bcb2fb67935c3ccabedc4450faac59" id="r_a67bcb2fb67935c3ccabedc4450faac59"><td class="memItemLeft" align="right" valign="top"><a id="a67bcb2fb67935c3ccabedc4450faac59" name="a67bcb2fb67935c3ccabedc4450faac59"></a>
+const std::unordered_set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>barCodeSet</b></td></tr>
+<tr class="memdesc:a67bcb2fb67935c3ccabedc4450faac59"><td class="mdescLeft">&#160;</td><td class="mdescRight">set of cell names, predefined before adding peaks to the object <br /></td></tr>
+<tr class="separator:a67bcb2fb67935c3ccabedc4450faac59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7af03f129d5fdabd0f108229ae1674f" id="r_af7af03f129d5fdabd0f108229ae1674f"><td class="memItemLeft" align="right" valign="top"><a id="af7af03f129d5fdabd0f108229ae1674f" name="af7af03f129d5fdabd0f108229ae1674f"></a>
 std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cumulUnnormProb</b></td></tr>
 <tr class="memdesc:af7af03f129d5fdabd0f108229ae1674f"><td class="mdescLeft">&#160;</td><td class="mdescRight">unnormalized probability distribution, for each cells <br /></td></tr>

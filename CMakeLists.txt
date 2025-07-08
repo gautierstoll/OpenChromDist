@@ -13,4 +13,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(OpenChromDistTest maintTest.cpp
         PeakBasedDist.cpp
-        PeakBasedDist.h)
+        PeakBasedDist.h
+        PeakDistanceMatrix.cpp
+        PeakDistanceMatrix.h)
