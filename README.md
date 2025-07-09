@@ -7,7 +7,7 @@ Roxygen generated [doc](https://gautierstoll.github.io/OpenChromDist/index.html)
 
 ## 🛠 Features
 
-- Class for cumulative probability estimation from peaks
+- API for distances between single cell ATAC peaks, based on cumulative probability estimation of open chromatin.
 
 
 ## 📦 Build and Run
