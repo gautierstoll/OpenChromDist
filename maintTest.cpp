@@ -10,9 +10,9 @@
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
-    std::string    barCodeFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/smallBarCodes.txt";
-    std::string    chromFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/smallChromFile.txt";
-    std::string fragFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/smallFragFile.txt";
+    std::string    barCodeFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/First5barCodes.txt";
+    std::string    chromFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/chromFile.txt";
+    std::string fragFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/FragATAC_LateRec_127p_chr1_First5barCodes.tsv";
 
     PeakBasedDist pkBsDist = PeakBasedDist::fromFlatFile(chromFile,barCodeFile);
     std::cout << "Number for barCodes:" << pkBsDist.barCodeSet.size() << std::endl;
@@ -26,8 +26,9 @@ int main(int argc, char* argv[]) {
     for (const auto & [barCode,cumulProb] : pkBsDist.cumulUnnormProb) {;
      std::cout << barCode << std::endl;
      for (const auto & prob : cumulProb) {
-         std::cout << prob << std::endl;
+          std::cout << prob << "\t";
      }
+        std::cout << std::endl;
     }
     pkBsDist.write2BinaryFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
     std::cout << "Wrote binary file" << std::endl;
@@ -44,7 +45,7 @@ int main(int argc, char* argv[]) {
     for (const auto & [barCode,cumulProb] : pkBsDistRFromFile.cumulUnnormProb) {;
         std::cout << barCode << std::endl;
         for (const auto & prob : cumulProb) {
-            std::cout << prob << std::endl;
+            // std::cout << prob << std::endl;
         }
     }
 
