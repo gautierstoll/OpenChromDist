@@ -30,13 +30,17 @@ PeakDistanceMatrix::PeakDistanceMatrix(const std::unordered_set<std::string> & b
         barCodeVect1.push_back(bareCode1);
         auto itBareCode1 = pBasedDist1.cumulUnnormProb.find(bareCode1);
         if (itBareCode1 == pBasedDist1.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode1 + " not found in first distribution");}
+        double normFactorBC1 = pBasedDist1.normFactor.find(bareCode1)->second;
+        if (normFactorBC1 == NAN) {normFactorBC1 = 1.0;}
         for (std::string bareCode2:bareCodeSet2) {
             barCodeVect2.push_back(bareCode2);
             auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode1);
             if (itBareCode2 == pBasedDist2.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode2 + " not found in second distribution");}
+            double normFactorBC2 = pBasedDist2.normFactor.find(bareCode2)->second;
+            if (normFactorBC2 == NAN) {normFactorBC2 = 1.0;}
             double maxAbs = 0.0;
             for (size_t cumlProbIndex=0;cumlProbIndex< (itBareCode1 -> second).size();cumlProbIndex++) {
-                maxAbs = std::max(maxAbs,std::abs((itBareCode1 -> second)[cumlProbIndex] - (itBareCode2 -> second)[cumlProbIndex]));
+                maxAbs = std::max(maxAbs,std::abs((itBareCode1 -> second)[cumlProbIndex]/normFactorBC1 - (itBareCode2 -> second)[cumlProbIndex]/normFactorBC2));
             }
             if (oPOutFile.has_value()) {
              outFile << bareCode1 << "\t" << bareCode2 << "\t" << maxAbs << std::endl;
