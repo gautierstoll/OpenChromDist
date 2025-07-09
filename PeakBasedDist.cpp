@@ -32,12 +32,12 @@ void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long posit
         if (std::max( (position4Test - windEval4Test),static_cast<long>(chrLength-(chrLength % bpStep))) <
             std::min((position4Test + windEval4Test),static_cast<long>(chrLength))) {
 
-            cumulUnnormProb[cellBarCode][chrLength/bpStep] = prevStepCumul +
+            cumulUnnormProb[cellBarCode][chrLength/bpStep] += prevStepCumul +
                 static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
                 (erf(static_cast<double>(chrLength-position)/static_cast<double>(windSize)) -
                     erf(static_cast<double>(chrLength-(chrLength % bpStep)-position)/static_cast<double>(windSize)));
         }
-        else {cumulUnnormProb[cellBarCode][chrLength/bpStep] = prevStepCumul;}
+        else {cumulUnnormProb[cellBarCode][chrLength/bpStep] += prevStepCumul;}
     }
 };
 
