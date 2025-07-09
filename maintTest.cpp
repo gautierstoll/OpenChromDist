@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "PeakBasedDist.h"
+#include "PeakDistanceMatrix.h"
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
@@ -22,14 +23,6 @@ int main(int argc, char* argv[]) {
 
     pkBsDist.addPeaksFromFragFile(fragFile,1000);
     std::cout << "Number of basCodes hits:" << pkBsDist.cumulUnnormProb.size() << std::endl;
-
-    for (const auto & [barCode,cumulProb] : pkBsDist.cumulUnnormProb) {;
-     std::cout << barCode << std::endl;
-     for (const auto & prob : cumulProb) {
-          std::cout << prob << "\t";
-     }
-        std::cout << std::endl;
-    }
 
     std::cout << "chormosome normalization" << std::endl;
     pkBsDist.chrNormalize();
@@ -47,20 +40,23 @@ int main(int argc, char* argv[]) {
     std::cout << "Wrote binary file" << std::endl;
 
 
-    PeakBasedDist pkBsDistRFromFile =
-        PeakBasedDist::fromBinFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
-    std::cout << "Read binary file" << std::endl;
+    PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
+std::cout << "bcvect1.size " << pkDistanceMatrix.barCodeVect1.size() << " bcvect2.size " << pkDistanceMatrix.barCodeVect2.size();
+    std::cout << " flat matrix size " << pkDistanceMatrix.distanceFlatMatrix.size() << std::endl;
 
 
-    std::cout << "Number of basCodes hits:" << pkBsDistRFromFile.cumulUnnormProb.size() << std::endl;
-    // pkBsDist.write2BinaryFile(outBindFile);
-
-    for (const auto & [barCode,cumulProb] : pkBsDistRFromFile.cumulUnnormProb) {;
-        std::cout << barCode << std::endl;
-        for (const auto & prob : cumulProb) {
-            // std::cout << prob << std::endl;
+auto itFlatMat = pkDistanceMatrix.distanceFlatMatrix.begin();
+    for (std::string bC1:pkDistanceMatrix.barCodeVect1) {
+        for (std::string bC2:pkDistanceMatrix.barCodeVect2) {
+            std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+            ++itFlatMat;
         }
     }
+
+    // PeakBasedDist pkBsDistRFromFile =
+    //     PeakBasedDist::fromBinFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
+    // std::cout << "Read binary file" << std::endl;
+
 
     return 0;
 }

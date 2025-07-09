@@ -7,7 +7,8 @@
 #include <fstream>
 
 PeakDistanceMatrix::PeakDistanceMatrix(const std::unordered_set<std::string> & bareCodeSet1,const std::unordered_set<std::string> & bareCodeSet2,
-                                       const PeakBasedDist & pBasedDist1,const PeakBasedDist & pBasedDist2,const std::optional<std::string> & oPOutFile) {
+                                       const PeakBasedDist & pBasedDist1,const PeakBasedDist & pBasedDist2,const std::optional<std::string> & oPOutFile) :
+barCodeVect1(bareCodeSet1.begin(),bareCodeSet1.end()),barCodeVect2(bareCodeSet2.begin(),bareCodeSet2.end()) {
     std::ofstream outFile;
     if (oPOutFile.has_value()) {
         outFile.open(oPOutFile.value());
@@ -23,17 +24,13 @@ PeakDistanceMatrix::PeakDistanceMatrix(const std::unordered_set<std::string> & b
             std::to_string(pBasedDist1.chrLength) + " " + std::to_string(pBasedDist2.chrLength));
     }
 
-    barCodeVect1.reserve(bareCodeSet1.size());
-    barCodeVect2.reserve(bareCodeSet2.size());
     if (!oPOutFile.has_value()){distanceFlatMatrix.reserve(bareCodeSet1.size()*(bareCodeSet2.size()));}
-    for (std::string bareCode1:bareCodeSet1) {
-        barCodeVect1.push_back(bareCode1);
+    for (std::string bareCode1:barCodeVect1) {
         auto itBareCode1 = pBasedDist1.cumulUnnormProb.find(bareCode1);
         if (itBareCode1 == pBasedDist1.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode1 + " not found in first distribution");}
         double normFactorBC1 = pBasedDist1.normFactor.find(bareCode1)->second;
         if (normFactorBC1 == NAN) {normFactorBC1 = 1.0;}
-        for (std::string bareCode2:bareCodeSet2) {
-            barCodeVect2.push_back(bareCode2);
+        for (std::string bareCode2:barCodeVect2) {
             auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode1);
             if (itBareCode2 == pBasedDist2.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode2 + " not found in second distribution");}
             double normFactorBC2 = pBasedDist2.normFactor.find(bareCode2)->second;
