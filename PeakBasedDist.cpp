@@ -73,7 +73,8 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
     ofs.write(reinterpret_cast<const char*>(&len), sizeof(len));
     ofs.write(chromosome.data(), len);
 
-    ofs.write(reinterpret_cast<const char*>(&chromosome), sizeof(std::string));
+
+    // ofs.write(reinterpret_cast<const char*>(&chromosome), sizeof(std::string));
 
     ofs.write(reinterpret_cast<const char*>(&chrLength), sizeof(unsigned long));
 

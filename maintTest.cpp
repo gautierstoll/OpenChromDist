@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
 
     pkBsDist.addPeaksFromFragFile(fragFile,1000);
     std::cout << "Number of basCodes hits:" << pkBsDist.cumulUnnormProb.size() << std::endl;
-                // pkBsDist.write2BinaryFile(outBindFile);
 
     for (const auto & [barCode,cumulProb] : pkBsDist.cumulUnnormProb) {;
      std::cout << barCode << std::endl;
@@ -30,5 +29,24 @@ int main(int argc, char* argv[]) {
          std::cout << prob << std::endl;
      }
     }
+    pkBsDist.write2BinaryFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
+    std::cout << "Wrote binary file" << std::endl;
+
+
+    PeakBasedDist pkBsDistRFromFile =
+        PeakBasedDist::fromBinFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
+    std::cout << "Read binary file" << std::endl;
+
+
+    std::cout << "Number of basCodes hits:" << pkBsDistRFromFile.cumulUnnormProb.size() << std::endl;
+    // pkBsDist.write2BinaryFile(outBindFile);
+
+    for (const auto & [barCode,cumulProb] : pkBsDistRFromFile.cumulUnnormProb) {;
+        std::cout << barCode << std::endl;
+        for (const auto & prob : cumulProb) {
+            std::cout << prob << std::endl;
+        }
+    }
+
     return 0;
 }
