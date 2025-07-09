@@ -16,10 +16,11 @@
 
 /**
  * @class PeakBasedDist
- * @brief probability distribution based on peaks
- * Each peak defines a gaussian probability density of a given sd set by a window size
- * An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
- * The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)
+ * @brief Probability distribution based on peaks
+ * @brief Each peak defines a gaussian probability density of a given sd set by a window size
+ * @brief An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
+ * @brief The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)
+ * @warning the normalization facto can be set, but it is not applied. Every probability should be divided by the normalization factor
  */
 class PeakBasedDist { //many cells, a unique chromosome
 public:
@@ -29,7 +30,7 @@ public:
     const unsigned long windSize; ///< sd of gaussian probability density of each peak
     const std::unordered_set<std::string> barCodeSet; ///< set of cell names, predefined before adding peaks to the object
     std::unordered_map<std::string,std::vector<double>> cumulUnnormProb; ///< unnormalized probability distribution, for each cells
-    std::unordered_map<std::string,double> normFactor; ///< normalization factor, should be set externally
+    std::unordered_map<std::string,double> normFactor; ///< normalization factor, set externally, every prob needs to be divided by it
     /**
      * @brief constructor of empty PeakBasedDist
      * @param chromosome chromosome name
@@ -47,18 +48,20 @@ public:
     /**
      * @brief static constructor, using binary file (missing norm factor)
      * @return a PeakBasedDist object
+     * @warning normalization factor is not set
      */
     static PeakBasedDist fromBinFile(const std::string &);
 
     /**
      * @brief construct from flat files
-     * @param chrFile chromosome description
-     *  CHROMOSOME=
-     *  CHRLENGTH=
-     *  BPSTEP=
-     *  WINDSIZE=
-     * @param barCodeFile list of barcode separated by \n
+     * @param chrFile chromosome description made of<br>
+     * CHROMOSOME=<br>
+     *  CHRLENGTH=<br>
+     *  BPSTEP=<br>
+     *  WINDSIZE=<br>
+     * @param barCodeFile list of barcode separated by newline
      * @return an empty PeakBasedDist object
+     * @
      */
     static PeakBasedDist fromFlatFile(const std::string & chrFile,const std::string &barCodeFile);
 
@@ -79,19 +82,20 @@ public:
     void addPeaksFromFragFile(const std::string & fragFile ,const unsigned long & windEval);
 
     /**
-     * @brief set normalization factor as 1/(cumul probability over the whole chromosome)
+     * @brief set normalization factor as (cumul probability over the whole chromosome)
      *
      */
     void chrNormalize() {
         for (const std::string & barCode : barCodeSet) {
-            normFactor[barCode] = 1.0/((this->cumulUnnormProb)[barCode].back());
+            normFactor[barCode] = ((this->cumulUnnormProb)[barCode].back());
         }
     };
 
     /**
      * @brief write object to binary file (missing norm factor)
-     * binary format is very compact, can only be read within fromBinFile static method
+     * @brief binary format is very compact, can only be read within fromBinFile static method
      * @param binFile
+     * @warning normalization factor is not saved
      */
     void write2BinaryFile(const std::string & binFile);
 
