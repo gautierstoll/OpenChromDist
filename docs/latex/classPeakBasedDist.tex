@@ -2,7 +2,7 @@
 \hypertarget{classPeakBasedDist}{}\label{classPeakBasedDist}\index{PeakBasedDist@{PeakBasedDist}}
 
 
-probability distribution based on peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bp\+Step (+ the length of the chromosome)  
+Probability distribution based on peaks.  
 
 
 
@@ -20,9 +20,9 @@ void \mbox{\hyperlink{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}{add\
 \begin{DoxyCompactList}\small\item\em use a fragment tsv file that has chormosome, begin, end, barcode, count \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}\label{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e} 
 void {\bfseries chr\+Normalize} ()
-\begin{DoxyCompactList}\small\item\em set normalization factor as 1/(cumul probability over the whole chromosome) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em set normalization factor as (cumul probability over the whole chromosome) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2\+Binary\+File}} (const std\+::string \&bin\+File)
-\begin{DoxyCompactList}\small\item\em write object to binary file (missing norm factor) binary format is very compact, can only be read within from\+Bin\+File static method \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em write object to binary file (missing norm factor) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -56,11 +56,20 @@ std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ {\bf
 \begin{DoxyCompactList}\small\item\em unnormalized probability distribution, for each cells \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}\label{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446} 
 std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries norm\+Factor}
-\begin{DoxyCompactList}\small\item\em normalization factor, should be set externally \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em normalization factor, set externally, every prob needs to be divided by it \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-probability distribution based on peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bp\+Step (+ the length of the chromosome) 
+Probability distribution based on peaks. 
+
+Each peak defines a gaussian probability density of a given sd set by a window size
+
+An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
+
+The set of values for the unnormalized cumulative probability distribution is given for each bp\+Step (+ the length of the chromosome) \begin{DoxyWarning}{Warning}
+The normalization factor can be set, but it is not applied. Every probability should be divided by the normalization factor 
+\end{DoxyWarning}
+
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0}\label{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0} 
@@ -140,6 +149,9 @@ static constructor, using binary file (missing norm factor)
 \begin{DoxyReturn}{Returns}
 a \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object 
 \end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+normalization factor is not set 
+\end{DoxyWarning}
 \Hypertarget{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}\label{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb} 
 \index{PeakBasedDist@{PeakBasedDist}!fromFlatFile@{fromFlatFile}}
 \index{fromFlatFile@{fromFlatFile}!PeakBasedDist@{PeakBasedDist}}
@@ -152,14 +164,18 @@ construct from flat files
 
 
 \begin{DoxyParams}{Parameters}
-{\em chr\+File} & chromosome description CHROMOSOME= CHRLENGTH= BPSTEP= WINDSIZE= \\
+{\em chr\+File} & chromosome description made of~\newline
+ CHROMOSOME=~\newline
+ CHRLENGTH=~\newline
+ BPSTEP=~\newline
+ WINDSIZE=~\newline
+ \\
 \hline
-{\em bar\+Code\+File} & list of barcode separated by ~\newline
-\\
+{\em bar\+Code\+File} & list of barcode separated by newline \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-an empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object 
+an empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object @ 
 \end{DoxyReturn}
 \Hypertarget{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}\label{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424} 
 \index{PeakBasedDist@{PeakBasedDist}!write2BinaryFile@{write2BinaryFile}}
@@ -169,13 +185,16 @@ an empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object
 
 
 
-write object to binary file (missing norm factor) binary format is very compact, can only be read within from\+Bin\+File static method 
+write object to binary file (missing norm factor) 
 
-
+binary format is very compact, can only be read within from\+Bin\+File static method 
 \begin{DoxyParams}{Parameters}
 {\em bin\+File} & \\
 \hline
 \end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+normalization factor is not saved 
+\end{DoxyWarning}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

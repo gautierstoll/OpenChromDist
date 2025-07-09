@@ -78,7 +78,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>probability distribution based on peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)  
+<p>Probability distribution based on peaks.  
  <a href="classPeakBasedDist.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PeakBasedDist_8h_source.html">PeakBasedDist.h</a>&gt;</code></p>
@@ -86,7 +86,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e56d3c0e4297a4c1f776c3427702fd0" id="r_a9e56d3c0e4297a4c1f776c3427702fd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#a9e56d3c0e4297a4c1f776c3427702fd0">PeakBasedDist</a> (std::string &amp;<a class="el" href="classPeakBasedDist.html#a31c8117337e766c10d8d8b6e7e4bee09">chromosome</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a4028fe05cac1967ebd39768c6517e9df">chrLength</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a6055b04ce2c49fd846ee1eb8c907db96">bpStep</a>, unsigned long <a class="el" href="classPeakBasedDist.html#a31f64c59a6af28e043f8642c5170dd5b">windSize</a>, const std::unordered_set&lt; std::string &gt; &amp;<a class="el" href="classPeakBasedDist.html#a67bcb2fb67935c3ccabedc4450faac59">barCodeSet</a>)</td></tr>
-<tr class="memdesc:a9e56d3c0e4297a4c1f776c3427702fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of empty <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a>  <br /></td></tr>
+<tr class="memdesc:a9e56d3c0e4297a4c1f776c3427702fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of empty <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a>  <br /></td></tr>
 <tr class="separator:a9e56d3c0e4297a4c1f776c3427702fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9732e92a350cc82f469f8612efc6657" id="r_ad9732e92a350cc82f469f8612efc6657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#ad9732e92a350cc82f469f8612efc6657">addPeak</a> (const std::string &amp;cellBarCode, unsigned long position, unsigned int count, std::optional&lt; unsigned long &gt; windEval)</td></tr>
 <tr class="memdesc:ad9732e92a350cc82f469f8612efc6657"><td class="mdescLeft">&#160;</td><td class="mdescRight">update object, given a new peak, in particular the cumulative unnormalized probability distribution  <br /></td></tr>
@@ -96,10 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7492cccd20f870de35ce82e8fc918e" id="r_a8b7492cccd20f870de35ce82e8fc918e"><td class="memItemLeft" align="right" valign="top"><a id="a8b7492cccd20f870de35ce82e8fc918e" name="a8b7492cccd20f870de35ce82e8fc918e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>chrNormalize</b> ()</td></tr>
-<tr class="memdesc:a8b7492cccd20f870de35ce82e8fc918e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set normalization factor as 1/(cumul probability over the whole chromosome) <br /></td></tr>
+<tr class="memdesc:a8b7492cccd20f870de35ce82e8fc918e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set normalization factor as (cumul probability over the whole chromosome) <br /></td></tr>
 <tr class="separator:a8b7492cccd20f870de35ce82e8fc918e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afda6689abc313f42024e1814d3b8c424" id="r_afda6689abc313f42024e1814d3b8c424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424">write2BinaryFile</a> (const std::string &amp;binFile)</td></tr>
-<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file (missing norm factor) binary format is very compact, can only be read within fromBinFile static method  <br /></td></tr>
+<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file (missing norm factor)  <br /></td></tr>
 <tr class="separator:afda6689abc313f42024e1814d3b8c424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -142,11 +142,14 @@ std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><
 <tr class="separator:af7af03f129d5fdabd0f108229ae1674f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7055cf566bac3c995d4cf9dfea0dd446" id="r_a7055cf566bac3c995d4cf9dfea0dd446"><td class="memItemLeft" align="right" valign="top"><a id="a7055cf566bac3c995d4cf9dfea0dd446" name="a7055cf566bac3c995d4cf9dfea0dd446"></a>
 std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>normFactor</b></td></tr>
-<tr class="memdesc:a7055cf566bac3c995d4cf9dfea0dd446"><td class="mdescLeft">&#160;</td><td class="mdescRight">normalization factor, should be set externally <br /></td></tr>
+<tr class="memdesc:a7055cf566bac3c995d4cf9dfea0dd446"><td class="mdescLeft">&#160;</td><td class="mdescRight">normalization factor, set externally, every prob needs to be divided by it <br /></td></tr>
 <tr class="separator:a7055cf566bac3c995d4cf9dfea0dd446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>probability distribution based on peaks Each peak defines a gaussian probability density of a given sd set by a window size An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode) The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome) </p>
+<div class="textblock"><p>Probability distribution based on peaks. </p>
+<p>Each peak defines a gaussian probability density of a given sd set by a window size</p>
+<p>An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)</p>
+<p>The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome) </p><dl class="section warning"><dt>Warning</dt><dd>The normalization factor can be set, but it is not applied. Every probability should be divided by the normalization factor </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9e56d3c0e4297a4c1f776c3427702fd0" name="a9e56d3c0e4297a4c1f776c3427702fd0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e56d3c0e4297a4c1f776c3427702fd0">&#9670;&#160;</a></span>PeakBasedDist()</h2>
@@ -200,7 +203,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 </table>
 </div><div class="memdoc">
 
-<p>constructor of empty <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a> </p>
+<p>constructor of empty <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chromosome</td><td>chromosome name </td></tr>
@@ -328,7 +331,8 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 </div><div class="memdoc">
 
 <p>static constructor, using binary file (missing norm factor) </p>
-<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a> object </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a> object </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>normalization factor is not set </dd></dl>
 
 </div>
 </div>
@@ -369,13 +373,17 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 <p>construct from flat files </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">chrFile</td><td>chromosome description CHROMOSOME= CHRLENGTH= BPSTEP= WINDSIZE= </td></tr>
-    <tr><td class="paramname">barCodeFile</td><td>list of barcode separated by <br  />
-</td></tr>
+    <tr><td class="paramname">chrFile</td><td>chromosome description made of<br  />
+ CHROMOSOME=<br  />
+ CHRLENGTH=<br  />
+ BPSTEP=<br  />
+ WINDSIZE=<br  />
+ </td></tr>
+    <tr><td class="paramname">barCodeFile</td><td>list of barcode separated by newline </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>an empty <a class="el" href="classPeakBasedDist.html" title="probability distribution based on peaks Each peak defines a gaussian probability density of a given s...">PeakBasedDist</a> object </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>an empty <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a> object @ </dd></dl>
 
 </div>
 </div>
@@ -395,13 +403,14 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
       </table>
 </div><div class="memdoc">
 
-<p>write object to binary file (missing norm factor) binary format is very compact, can only be read within fromBinFile static method </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>write object to binary file (missing norm factor) </p>
+<p>binary format is very compact, can only be read within fromBinFile static method </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">binFile</td><td></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section warning"><dt>Warning</dt><dd>normalization factor is not saved </dd></dl>
 
 </div>
 </div>

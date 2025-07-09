@@ -20,7 +20,7 @@
  * @brief Each peak defines a gaussian probability density of a given sd set by a window size
  * @brief An unnormalized cumulative probability distribution is computed for each cell (defined by a barcode)
  * @brief The set of values for the unnormalized cumulative probability distribution is given for each bpStep (+ the length of the chromosome)
- * @warning the normalization facto can be set, but it is not applied. Every probability should be divided by the normalization factor
+ * @warning The normalization factor can be set, but it is not applied. Every probability should be divided by the normalization factor
  */
 class PeakBasedDist { //many cells, a unique chromosome
 public:
