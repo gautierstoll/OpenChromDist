@@ -31,7 +31,13 @@ int main(int argc, char* argv[]) {
                 PeakBasedDist pkBsDist = PeakBasedDist::fromFlatFile(chromFile,barCodeFile);
 
                 pkBsDist.addPeaksFromFragFile(fragFile,PeakBasedDist::strToUnsLong(windEvalStr));
+                pkBsDist.chrNormalize();
+
                 pkBsDist.write2BinaryFile(outBindFile);
+
+                PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
+                std::cout << "bcvect1.size " << pkDistanceMatrix.barCodeVect1.size() << " bcvect2.size " << pkDistanceMatrix.barCodeVect2.size();
+                std::cout << " flat matrix size " << pkDistanceMatrix.distanceFlatMatrix.size() << std::endl;
                 return 0;
             } else {
                 std::cerr << "Missing arguments\n"

@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 
     std::cout << "chormosome normalization" << std::endl;
     pkBsDist.chrNormalize();
+    /*
     for (const auto & [barCode,cumulProb] : pkBsDist.cumulUnnormProb) {;
         std::cout << barCode << std::endl;
         for (const auto & prob : cumulProb) {
@@ -33,7 +34,7 @@ int main(int argc, char* argv[]) {
         }
         std::cout << std::endl;
     }
-
+*/
 
 
     pkBsDist.write2BinaryFile("/home/gstoll/CLionProjects/OpenChromDist/Test/smallFrag.bin");
