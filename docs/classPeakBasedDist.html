@@ -92,20 +92,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad9732e92a350cc82f469f8612efc6657"><td class="mdescLeft">&#160;</td><td class="mdescRight">update object, given a new peak, in particular the cumulative unnormalized probability distribution  <br /></td></tr>
 <tr class="separator:ad9732e92a350cc82f469f8612efc6657"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1cbb045f227193a6eeb6b2ce9bf7f9b" id="r_ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#ab1cbb045f227193a6eeb6b2ce9bf7f9b">addPeaksFromFragFile</a> (const std::string &amp;fragFile, const unsigned long &amp;windEval)</td></tr>
-<tr class="memdesc:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">use a fragment tsv file that has chormosome, begin, end, barcode, count  <br /></td></tr>
+<tr class="memdesc:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">use a fragment tsv file that has chromosome, begin, end, barcode, count  <br /></td></tr>
 <tr class="separator:ab1cbb045f227193a6eeb6b2ce9bf7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7492cccd20f870de35ce82e8fc918e" id="r_a8b7492cccd20f870de35ce82e8fc918e"><td class="memItemLeft" align="right" valign="top"><a id="a8b7492cccd20f870de35ce82e8fc918e" name="a8b7492cccd20f870de35ce82e8fc918e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>chrNormalize</b> ()</td></tr>
-<tr class="memdesc:a8b7492cccd20f870de35ce82e8fc918e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set normalization factor as (cumul probability over the whole chromosome) <br /></td></tr>
+<tr class="memdesc:a8b7492cccd20f870de35ce82e8fc918e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set normalization factor as cumulative probability over the whole chromosome <br /></td></tr>
 <tr class="separator:a8b7492cccd20f870de35ce82e8fc918e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afda6689abc313f42024e1814d3b8c424" id="r_afda6689abc313f42024e1814d3b8c424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424">write2BinaryFile</a> (const std::string &amp;binFile)</td></tr>
-<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file (missing norm factor)  <br /></td></tr>
+<tr class="memdesc:afda6689abc313f42024e1814d3b8c424"><td class="mdescLeft">&#160;</td><td class="mdescRight">write object to binary file (without normalization factor)  <br /></td></tr>
 <tr class="separator:afda6689abc313f42024e1814d3b8c424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0efb006b7e56aca1adfd6bb8e58d14ab" id="r_a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#a0efb006b7e56aca1adfd6bb8e58d14ab">fromBinFile</a> (const std::string &amp;)</td></tr>
-<tr class="memdesc:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">static constructor, using binary file (missing norm factor)  <br /></td></tr>
+<tr class="memdesc:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">static constructor, using binary file (no normalization factor)  <br /></td></tr>
 <tr class="separator:a0efb006b7e56aca1adfd6bb8e58d14ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce1090b92329aa9d4f6bc94ed850ddb" id="r_acce1090b92329aa9d4f6bc94ed850ddb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classPeakBasedDist.html">PeakBasedDist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPeakBasedDist.html#acce1090b92329aa9d4f6bc94ed850ddb">fromFlatFile</a> (const std::string &amp;chrFile, const std::string &amp;barCodeFile)</td></tr>
 <tr class="memdesc:acce1090b92329aa9d4f6bc94ed850ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct from flat files  <br /></td></tr>
@@ -138,7 +138,7 @@ const std::unordered_set&lt; std::string &gt;&#160;</td><td class="memItemRight"
 <tr class="separator:a67bcb2fb67935c3ccabedc4450faac59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7af03f129d5fdabd0f108229ae1674f" id="r_af7af03f129d5fdabd0f108229ae1674f"><td class="memItemLeft" align="right" valign="top"><a id="af7af03f129d5fdabd0f108229ae1674f" name="af7af03f129d5fdabd0f108229ae1674f"></a>
 std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cumulUnnormProb</b></td></tr>
-<tr class="memdesc:af7af03f129d5fdabd0f108229ae1674f"><td class="mdescLeft">&#160;</td><td class="mdescRight">unnormalized probability distribution, for each cells <br /></td></tr>
+<tr class="memdesc:af7af03f129d5fdabd0f108229ae1674f"><td class="mdescLeft">&#160;</td><td class="mdescRight">unnormalized cumulative distribution, for each cells <br /></td></tr>
 <tr class="separator:af7af03f129d5fdabd0f108229ae1674f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7055cf566bac3c995d4cf9dfea0dd446" id="r_a7055cf566bac3c995d4cf9dfea0dd446"><td class="memItemLeft" align="right" valign="top"><a id="a7055cf566bac3c995d4cf9dfea0dd446" name="a7055cf566bac3c995d4cf9dfea0dd446"></a>
 std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>normFactor</b></td></tr>
@@ -209,7 +209,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
     <tr><td class="paramname">chromosome</td><td>chromosome name </td></tr>
     <tr><td class="paramname">chrLength</td><td>chromosome length </td></tr>
     <tr><td class="paramname">bpStep</td><td>evaluation point of unnormalized cumulative probability distribution </td></tr>
-    <tr><td class="paramname">windSize</td><td>sd of gaussion probability density for each peak </td></tr>
+    <tr><td class="paramname">windSize</td><td>sd of gaussian probability density for each peak </td></tr>
     <tr><td class="paramname">barCodeSet</td><td>names of cell, a priori definition (could be based on external QC for instance) </td></tr>
   </table>
   </dd>
@@ -295,7 +295,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
       </table>
 </div><div class="memdoc">
 
-<p>use a fragment tsv file that has chormosome, begin, end, barcode, count </p>
+<p>use a fragment tsv file that has chromosome, begin, end, barcode, count </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fragFile</td><td></td></tr>
@@ -330,7 +330,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
 </table>
 </div><div class="memdoc">
 
-<p>static constructor, using binary file (missing norm factor) </p>
+<p>static constructor, using binary file (no normalization factor) </p>
 <dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a> object </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>normalization factor is not set </dd></dl>
 
@@ -403,7 +403,7 @@ std::unordered_map&lt; std::string, double &gt;&#160;</td><td class="memItemRigh
       </table>
 </div><div class="memdoc">
 
-<p>write object to binary file (missing norm factor) </p>
+<p>write object to binary file (without normalization factor) </p>
 <p>binary format is very compact, can only be read within fromBinFile static method </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">binFile</td><td></td></tr>

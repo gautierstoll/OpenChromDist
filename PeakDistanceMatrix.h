@@ -12,9 +12,9 @@
 
 /**
  * @class PeakDistanceMatrix
- * @brief compute kolmogorov-smirnov distance given the cumulative probability distribution
- * @brief computed in constructor, either keeping the flat matrix in memory or wriring to a .csv file
- * @warning list of barcodes should be in Peak Based distribution
+ * @brief estimate Kolmogorov-Smirnov distance given the cumulative probability distribution
+ * @brief computed in constructor, either keeping the flat matrix in memory or writing to a .csv file
+ * @warning list of barcodes should be in PeakBasedDist inputs
  * @warning cumulative probability distribution should be normalized before
  */
 class PeakDistanceMatrix {
@@ -22,7 +22,7 @@ class PeakDistanceMatrix {
 public :
     std::vector<std::string> barCodeVect1; ///< vector of first barCodes
     std::vector<std::string> barCodeVect2; ///< vector of second barCodes
-    std::vector<double> distanceFlatMatrix; ///< flat matrix of barCodes distrances, filles by outer-loop over first vector and inner-loop over second vector
+    std::vector<double> distanceFlatMatrix; ///< flat matrix of barCodes distances, filled by outer-loop over first barCode vector and inner-loop over second barCode vector
     /**
      * @brief construct vector of barcodes and flat matrix
      * @param bareCodeSet1 First list of bareCodes

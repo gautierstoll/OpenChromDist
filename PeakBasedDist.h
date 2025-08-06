@@ -29,14 +29,14 @@ public:
     const unsigned long bpStep; ///< base pair step for computing cumulative distribution
     const unsigned long windSize; ///< sd of gaussian probability density of each peak
     const std::unordered_set<std::string> barCodeSet; ///< set of cell names, predefined before adding peaks to the object
-    std::unordered_map<std::string,std::vector<double>> cumulUnnormProb; ///< unnormalized probability distribution, for each cells
+    std::unordered_map<std::string,std::vector<double>> cumulUnnormProb; ///< unnormalized cumulative distribution, for each cells
     std::unordered_map<std::string,double> normFactor; ///< normalization factor, set externally, every prob needs to be divided by it
     /**
      * @brief constructor of empty PeakBasedDist
      * @param chromosome chromosome name
      * @param chrLength chromosome length
      * @param bpStep evaluation point of unnormalized cumulative probability distribution
-     * @param windSize sd of gaussion probability density for each peak
+     * @param windSize sd of gaussian probability density for each peak
      * @param barCodeSet names of cell, a priori definition (could be based on external QC for instance)
      */
     explicit PeakBasedDist(std::string & chromosome, unsigned long chrLength,unsigned long bpStep,unsigned long windSize, const std::unordered_set<std::string> & barCodeSet) :
@@ -46,7 +46,7 @@ public:
     }
 
     /**
-     * @brief static constructor, using binary file (missing norm factor)
+     * @brief static constructor, using binary file (no normalization factor)
      * @return a PeakBasedDist object
      * @warning normalization factor is not set
      */
@@ -75,14 +75,14 @@ public:
     void addPeak(const std::string & cellBarCode,unsigned long position,unsigned int count, std::optional<unsigned long> windEval);
 
     /**
-     * @brief use a fragment tsv file that has chormosome, begin, end, barcode, count
+     * @brief use a fragment tsv file that has chromosome, begin, end, barcode, count
      * @param fragFile
      * @param windEval window around peak inside which the density is supposed to be non-zero (approximation parameter for accelerating the distribution update)
      */
     void addPeaksFromFragFile(const std::string & fragFile ,const unsigned long & windEval);
 
     /**
-     * @brief set normalization factor as (cumul probability over the whole chromosome)
+     * @brief set normalization factor as cumulative probability over the whole chromosome
      *
      */
     void chrNormalize() {
@@ -92,7 +92,7 @@ public:
     };
 
     /**
-     * @brief write object to binary file (missing norm factor)
+     * @brief write object to binary file (without normalization factor)
      * @brief binary format is very compact, can only be read within fromBinFile static method
      * @param binFile
      * @warning normalization factor is not saved

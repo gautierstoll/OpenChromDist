@@ -2,7 +2,7 @@
 \hypertarget{classPeakDistanceMatrix}{}\label{classPeakDistanceMatrix}\index{PeakDistanceMatrix@{PeakDistanceMatrix}}
 
 
-compute kolmogorov-\/smirnov distance given the cumulative probability distribution  
+estimate Kolmogorov-\/\+Smirnov distance given the cumulative probability distribution  
 
 
 
@@ -31,14 +31,14 @@ std\+::vector$<$ std\+::string $>$ {\bfseries bar\+Code\+Vect2}
 \begin{DoxyCompactList}\small\item\em vector of second bar\+Codes \end{DoxyCompactList}\item 
 \Hypertarget{classPeakDistanceMatrix_a255b114c12efc7a7b0fdf78e1a034df4}\label{classPeakDistanceMatrix_a255b114c12efc7a7b0fdf78e1a034df4} 
 std\+::vector$<$ double $>$ {\bfseries distance\+Flat\+Matrix}
-\begin{DoxyCompactList}\small\item\em flat matrix of bar\+Codes distrances, filles by outer-\/loop over first vector and inner-\/loop over second vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em flat matrix of bar\+Codes distances, filled by outer-\/loop over first bar\+Code vector and inner-\/loop over second bar\+Code vector \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-compute kolmogorov-\/smirnov distance given the cumulative probability distribution 
+estimate Kolmogorov-\/\+Smirnov distance given the cumulative probability distribution 
 
-computed in constructor, either keeping the flat matrix in memory or wriring to a .csv file \begin{DoxyWarning}{Warning}
-list of barcodes should be in Peak Based distribution 
+computed in constructor, either keeping the flat matrix in memory or writing to a .csv file \begin{DoxyWarning}{Warning}
+list of barcodes should be in \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} inputs 
 
 cumulative probability distribution should be normalized before 
 \end{DoxyWarning}

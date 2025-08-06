@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>compute kolmogorov-smirnov distance given the cumulative probability distribution  
+<p>estimate Kolmogorov-Smirnov distance given the cumulative probability distribution  
  <a href="classPeakDistanceMatrix.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PeakDistanceMatrix_8h_source.html">PeakDistanceMatrix.h</a>&gt;</code></p>
@@ -109,12 +109,12 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 <tr class="separator:ac778e0c2a8add4a8bd31fe93dd55843c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a255b114c12efc7a7b0fdf78e1a034df4" id="r_a255b114c12efc7a7b0fdf78e1a034df4"><td class="memItemLeft" align="right" valign="top"><a id="a255b114c12efc7a7b0fdf78e1a034df4" name="a255b114c12efc7a7b0fdf78e1a034df4"></a>
 std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>distanceFlatMatrix</b></td></tr>
-<tr class="memdesc:a255b114c12efc7a7b0fdf78e1a034df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">flat matrix of barCodes distrances, filles by outer-loop over first vector and inner-loop over second vector <br /></td></tr>
+<tr class="memdesc:a255b114c12efc7a7b0fdf78e1a034df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">flat matrix of barCodes distances, filled by outer-loop over first barCode vector and inner-loop over second barCode vector <br /></td></tr>
 <tr class="separator:a255b114c12efc7a7b0fdf78e1a034df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>compute kolmogorov-smirnov distance given the cumulative probability distribution </p>
-<p>computed in constructor, either keeping the flat matrix in memory or wriring to a .csv file </p><dl class="section warning"><dt>Warning</dt><dd>list of barcodes should be in Peak Based distribution </dd>
+<div class="textblock"><p>estimate Kolmogorov-Smirnov distance given the cumulative probability distribution </p>
+<p>computed in constructor, either keeping the flat matrix in memory or writing to a .csv file </p><dl class="section warning"><dt>Warning</dt><dd>list of barcodes should be in <a class="el" href="classPeakBasedDist.html" title="Probability distribution based on peaks.">PeakBasedDist</a> inputs </dd>
 <dd>
 cumulative probability distribution should be normalized before </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>

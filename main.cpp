@@ -38,6 +38,14 @@ int main(int argc, char* argv[]) {
                 PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
                 std::cout << "bcvect1.size " << pkDistanceMatrix.barCodeVect1.size() << " bcvect2.size " << pkDistanceMatrix.barCodeVect2.size();
                 std::cout << " flat matrix size " << pkDistanceMatrix.distanceFlatMatrix.size() << std::endl;
+                auto itFlatMat = pkDistanceMatrix.distanceFlatMatrix.begin();
+                for (std::string bC1:pkDistanceMatrix.barCodeVect1) {
+                    for (std::string bC2:pkDistanceMatrix.barCodeVect2) {
+                        std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+                        ++itFlatMat;
+                    }
+                }
+
                 return 0;
             } else {
                 std::cerr << "Missing arguments\n"

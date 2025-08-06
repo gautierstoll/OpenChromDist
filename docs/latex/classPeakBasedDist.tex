@@ -17,17 +17,17 @@ Probability distribution based on peaks.
 void \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{add\+Peak}} (const std\+::string \&cell\+Bar\+Code, unsigned long position, unsigned int count, std\+::optional$<$ unsigned long $>$ wind\+Eval)
 \begin{DoxyCompactList}\small\item\em update object, given a new peak, in particular the cumulative unnormalized probability distribution \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}{add\+Peaks\+From\+Frag\+File}} (const std\+::string \&frag\+File, const unsigned long \&wind\+Eval)
-\begin{DoxyCompactList}\small\item\em use a fragment tsv file that has chormosome, begin, end, barcode, count \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em use a fragment tsv file that has chromosome, begin, end, barcode, count \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}\label{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e} 
 void {\bfseries chr\+Normalize} ()
-\begin{DoxyCompactList}\small\item\em set normalization factor as (cumul probability over the whole chromosome) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em set normalization factor as cumulative probability over the whole chromosome \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2\+Binary\+File}} (const std\+::string \&bin\+File)
-\begin{DoxyCompactList}\small\item\em write object to binary file (missing norm factor) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em write object to binary file (without normalization factor) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{from\+Bin\+File}} (const std\+::string \&)
-\begin{DoxyCompactList}\small\item\em static constructor, using binary file (missing norm factor) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em static constructor, using binary file (no normalization factor) \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classPeakBasedDist}{Peak\+Based\+Dist}} \mbox{\hyperlink{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}{from\+Flat\+File}} (const std\+::string \&chr\+File, const std\+::string \&bar\+Code\+File)
 \begin{DoxyCompactList}\small\item\em construct from flat files \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a24c67fca616b1c831e04891e72a1503f}\label{classPeakBasedDist_a24c67fca616b1c831e04891e72a1503f} 
@@ -53,7 +53,7 @@ const std\+::unordered\+\_\+set$<$ std\+::string $>$ {\bfseries bar\+Code\+Set}
 \begin{DoxyCompactList}\small\item\em set of cell names, predefined before adding peaks to the object \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}\label{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f} 
 std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ {\bfseries cumul\+Unnorm\+Prob}
-\begin{DoxyCompactList}\small\item\em unnormalized probability distribution, for each cells \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em unnormalized cumulative distribution, for each cells \end{DoxyCompactList}\item 
 \Hypertarget{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}\label{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446} 
 std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries norm\+Factor}
 \begin{DoxyCompactList}\small\item\em normalization factor, set externally, every prob needs to be divided by it \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -90,7 +90,7 @@ constructor of empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist}
 \hline
 {\em bp\+Step} & evaluation point of unnormalized cumulative probability distribution \\
 \hline
-{\em wind\+Size} & sd of gaussion probability density for each peak \\
+{\em wind\+Size} & sd of gaussian probability density for each peak \\
 \hline
 {\em bar\+Code\+Set} & names of cell, a priori definition (could be based on external QC for instance) \\
 \hline
@@ -127,7 +127,7 @@ update object, given a new peak, in particular the cumulative unnormalized proba
 
 
 
-use a fragment tsv file that has chormosome, begin, end, barcode, count 
+use a fragment tsv file that has chromosome, begin, end, barcode, count 
 
 
 \begin{DoxyParams}{Parameters}
@@ -144,7 +144,7 @@ use a fragment tsv file that has chormosome, begin, end, barcode, count
 
 
 
-static constructor, using binary file (missing norm factor) 
+static constructor, using binary file (no normalization factor) 
 
 \begin{DoxyReturn}{Returns}
 a \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object 
@@ -185,7 +185,7 @@ an empty \doxylink{classPeakBasedDist}{Peak\+Based\+Dist} object @
 
 
 
-write object to binary file (missing norm factor) 
+write object to binary file (without normalization factor) 
 
 binary format is very compact, can only be read within from\+Bin\+File static method 
 \begin{DoxyParams}{Parameters}
