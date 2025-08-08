@@ -4,14 +4,30 @@
 #include <vector>
 
 #include "PeakBasedDist.h"
+#include "PeakDistanceMatrix.h"
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
-    if (argc > 3) {
-        if (argv[1] == "-l") {
-            PeakBasedDist pkBsDist = PeakBasedDist::fromBinFile(argv[2]);
+    if (argc > 2) {
+        std::string argv1 = argv[1];
+        if (argv1 == "-l") {
+            std::string binFile = argv[2];
+            PeakBasedDist pkBsDist = PeakBasedDist::fromBinFile(binFile);
+            pkBsDist.chrNormalize();
+            PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
+            std::cout << "bcvect1.size " << pkDistanceMatrix.barCodeVect1.size() << " bcvect2.size " << pkDistanceMatrix.barCodeVect2.size();
+            std::cout << " flat matrix size " << pkDistanceMatrix.distanceFlatMatrix.size() << std::endl;
+            auto itFlatMat = pkDistanceMatrix.distanceFlatMatrix.begin();
+            for (std::string bC1:pkDistanceMatrix.barCodeVect1) {
+                for (std::string bC2:pkDistanceMatrix.barCodeVect2) {
+                    std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+                    ++itFlatMat;
+                }
+            }
+
+
         } else {
-            if (argc > 6) {
+            if (argc > 5) {
                 // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
 
                 // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
