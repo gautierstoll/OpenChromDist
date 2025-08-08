@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <sstream>
 #include <vector>
 
 #include "PeakBasedDist.h"

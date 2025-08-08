@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <optional>
+#include <sstream>
 
 void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long position, unsigned int count, std::optional<unsigned long> windEval) {
     // add test for cellBarCode name
