@@ -62,6 +62,7 @@ public :
      */
     explicit PeakDistanceMatrix(const std::unordered_set<std::string> & bareCodeSet,const PeakBasedDist & pBasedDist,const std::string & outFile) :
     PeakDistanceMatrix(bareCodeSet,bareCodeSet,pBasedDist,pBasedDist, outFile) {}
+    void writeMatrix();
 
 private:
     /**

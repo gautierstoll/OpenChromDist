@@ -49,3 +49,13 @@ barCodeVect1(bareCodeSet1.begin(),bareCodeSet1.end()),barCodeVect2(bareCodeSet2.
 outFile.close();
 
 }
+
+void PeakDistanceMatrix::writeMatrix() {
+    std::cout << "nb of rows: " << this->barCodeVect1.size() << " nb of columns: " << this->barCodeVect2.size();
+    std::cout << " flat matrix size " << this->distanceFlatMatrix.size() << std::endl;
+    auto itFlatMat = this->distanceFlatMatrix.begin();
+    for (std::string bC1:this->barCodeVect1) {
+        for (std::string bC2:this->barCodeVect2) {
+            std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+            ++itFlatMat;}}
+}

@@ -55,6 +55,7 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
             }
             if (tokenVector.size() >= 5) {
                 if (tokenVector[0] == chromosome) {
+                    std::cout << "\rAdd bareCode: " << tokenVector[3] << " at position " << tokenVector[1] << std::flush; ;
                     addPeak(tokenVector[3],
                         (strToUnsLong(tokenVector[1])+strToUnsLong(tokenVector[2]))/2,
                         strToUnsLong(tokenVector[4]),
@@ -63,6 +64,7 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
             } else {throw std::runtime_error("Bad line in fragment file "+line);}
         }
     }
+    std::cout << std::endl;
 };
 
 void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
@@ -202,7 +204,6 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     } else {throw std::runtime_error("WINDSIZE?");}
 
     PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,bpStep,windSize,barCodeSet);
-    std::cout << "Class created" << std::endl;
     return pkBaseDist;
 };
 
