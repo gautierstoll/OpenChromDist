@@ -26,12 +26,17 @@ barCodeVect1(bareCodeSet1.begin(),bareCodeSet1.end()),barCodeVect2(bareCodeSet2.
     }
 
     if (!oPOutFile.has_value()){distanceFlatMatrix.reserve(bareCodeSet1.size()*(bareCodeSet2.size()));}
+    size_t indexVect1 = 0;
     for (std::string bareCode1:barCodeVect1) {
+        indexVect1++;
         auto itBareCode1 = pBasedDist1.cumulUnnormProb.find(bareCode1);
         if (itBareCode1 == pBasedDist1.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode1 + " not found in first distribution");}
         double normFactorBC1 = pBasedDist1.normFactor.find(bareCode1)->second;
         if (normFactorBC1 == NAN) {normFactorBC1 = 1.0;}
+        size_t indexVect2 = 0;
         for (std::string bareCode2:barCodeVect2) {
+            indexVect2++;
+            std::cout << "\rIndex1: " << indexVect1 << " Index2: " << indexVect2 << std::flush;
             auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode1);
             if (itBareCode2 == pBasedDist2.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode2 + " not found in second distribution");}
             double normFactorBC2 = pBasedDist2.normFactor.find(bareCode2)->second;

@@ -12,7 +12,7 @@
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
     std::string    barCodeFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/First5barCodes.txt";
-    std::string    chromFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/chromFile.txt";
+    std::string    chromFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/chromFilechr1.txt";
     std::string fragFile = "/home/gstoll/CLionProjects/OpenChromDist/Test/FragATAC_LateRec_127p_chr1_First5barCodes.tsv";
 
     PeakBasedDist pkBsDist = PeakBasedDist::fromFlatFile(chromFile,barCodeFile);
