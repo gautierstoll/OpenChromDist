@@ -46,7 +46,9 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
     std::ifstream fragFStr(fragFile);
     if (!fragFStr.is_open()) throw std::runtime_error("Failed to open fragment file");
     std::string line;
+    size_t  fileLine = 0;
     while (std::getline(fragFStr, line)) {
+        fileLine++;
         if (!line.empty() && line[0] != '#') {
             std::stringstream lineStream(line);
             std::vector<std::string> tokenVector;
@@ -56,7 +58,8 @@ void PeakBasedDist::addPeaksFromFragFile(const std::string & fragFile,const unsi
             }
             if (tokenVector.size() >= 5) {
                 if (tokenVector[0] == chromosome) {
-                    std::cout << "\rAdd bareCode: " << tokenVector[3] << " at position " << tokenVector[1] << std::flush; ;
+                    std::cout << "\r File Line: " << fileLine <<
+                        " Add bareCode: " << tokenVector[3] << " at position " << tokenVector[1] << std::flush;
                     addPeak(tokenVector[3],
                         (strToUnsLong(tokenVector[1])+strToUnsLong(tokenVector[2]))/2,
                         strToUnsLong(tokenVector[4]),
