@@ -11,12 +11,13 @@
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
     std::ostringstream helpStrStr;
-    helpStrStr << "For creating distribution:\n"
-    << "Project version: " << PROJECT_VERSION << "\n"
-    << "  OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n"
+    helpStrStr
+    << "Project version: " << PROJECT_VERSION << "\n\n"
+    << "For creating distribution:\n"
+    << "  OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n\n"
     << "    chromFile contains\n      CHROMOSOME=\n      CHRLENGTH=\n      BPSTEP=\n      WINDSIZE=\n"
     << "    barCodeFile contains a list of barcode separated by newline\n"
-    << "    with no output binary file, distance matrix is computed\n\n"
+    << "    with no output binary file, distance matrix is directly computed\n\n"
     << "For computing distance matrix from binary file of distribution: \n"
     <<  "  OpenChromDist -l binFile\n\n"
     << "For help:\n"
@@ -63,8 +64,8 @@ int main(int argc, char* argv[]) {
                 pkDistanceMatrix.writeMatrix();
             }
             return 0;}
-        std::cerr << "Not enough arguments\n\n" << helpStrStr.str();
+        std::cerr << "Error, not enough arguments\n\n" << helpStrStr.str();
         return 1;}
-    std::cerr << "No arguments\n\n" << helpStrStr.str();
+    std::cerr << "Error, no arguments\n\n" << helpStrStr.str();
     return 1;
 }
