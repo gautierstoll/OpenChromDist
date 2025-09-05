@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
-project(OpenChromDist VERSION 0.9.0 LANGUAGES CXX)
+project(OpenChromDist
+        VERSION 0.9.1
+        LANGUAGES CXX)
 
 message(STATUS "Project version: ${PROJECT_VERSION}")
 
