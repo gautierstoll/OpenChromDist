@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 3.28)
-project(OpenChromDist)
+project(OpenChromDist VERSION 0.9.0 LANGUAGES CXX)
+
+message(STATUS "Project version: ${PROJECT_VERSION}")
+
+configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in   # template dans le dossier source
+        ${CMAKE_CURRENT_BINARY_DIR}/version.h      # fichier généré dans le build
+        @ONLY
+)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 20)
 

@@ -3,6 +3,8 @@
 C++ API for estimating gaussian-based open chromatin distribution 
 from ATAC seq data
 
+Current version number in CMakeLists.txt
+
 Roxygen generated [doc](https://gautierstoll.github.io/OpenChromDist/index.html)
 
 ## 🛠 Features

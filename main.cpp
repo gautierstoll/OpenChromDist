@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "cmake-build-debug/version.h"
 #include <sstream>
 #include <vector>
 
@@ -10,7 +11,8 @@
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
     std::ostringstream helpStrStr;
-    helpStrStr << "For creating distribution:"
+    helpStrStr << "For creating distribution:\n"
+    << "Project version: " << PROJECT_VERSION << "\n"
     << "  OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n"
     << "    chromFile contains\n      CHROMOSOME=\n      CHRLENGTH=\n      BPSTEP=\n      WINDSIZE=\n"
     << "    barCodeFile contains a list of barcode separated by newline\n"
