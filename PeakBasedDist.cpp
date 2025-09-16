@@ -18,7 +18,7 @@ void PeakBasedDist::addPeak(const std::string & cellBarCode, unsigned long posit
         double prevStepCumul = 0.0; // cumulative probability of previous step, for the given peak
         if (windEval) {windEval4Test = static_cast<long>(windEval.value());} else {windEval4Test = static_cast<long>(chrLength);}
 
-        for (long indexBp = 0; (indexBp+1)*bpStep < static_cast<long>(chrLength); indexBp++ ) { // index is signed long for testing
+        for (long indexBp = 0; (indexBp+1)*bpStep < static_cast<unsigned long>(chrLength); indexBp++ ) { // index is signed long for testing
             if (std::max( (position4Test - windEval4Test),indexBp * bpStep4Test ) < std::min((position4Test + windEval4Test),(indexBp+1) * bpStep4Test)) {
                 prevStepCumul  +=
                     static_cast<double>(count)*static_cast<double>(windSize) * std::numbers::pi / 2 *
@@ -104,6 +104,7 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
         ofs.write(key.data(), key_len);
 
         uint64_t vec_len = vec.size();
+
         ofs.write(reinterpret_cast<const char*>(&vec_len), sizeof(vec_len));
         ofs.write(reinterpret_cast<const char*>(vec.data()), vec_len * sizeof(double));
     }

@@ -20,6 +20,11 @@ set(CMAKE_CXX_STANDARD 20)
          PeakDistanceMatrix.cpp
  )
 
+
+target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Release>:-O3 -march=native -flto -funroll-loops>)
+
+target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Debug>:-O0 -g -Wall>)
+
 #add_executable(OpenChromDistTest mainTest.cpp
 #        PeakBasedDist.cpp
 #        PeakBasedDist.h

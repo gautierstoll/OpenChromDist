@@ -23,8 +23,16 @@ Doxygen generated [doc](https://gautierstoll.github.io/OpenChromDist/index.html)
 ### Build
 
 
-
+Fast compilattion
 ```bash
 cd OpenChromDist/
 cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-debug
 cmake --build ./cmake-build-debug
+```
+
+Optimzed speed
+```bash
+cd OpenChromDist/
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-release
+cmake --build ./cmake-build-release
+```

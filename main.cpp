@@ -9,8 +9,7 @@
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
     std::ostringstream helpStrStr;
-    helpStrStr
-    << "Project version: " << PROJECT_VERSION << "\n\n"
+    helpStrStr << "Project version: " << PROJECT_VERSION << "\n\n"
     << "For creating distribution:\n"
     << "  OpenChromDist chromFile barCodeFile fragFile windEval outBindFile\n\n"
     << "    chromFile contains\n      CHROMOSOME=\n      CHRLENGTH=\n      BPSTEP=\n      WINDSIZE=\n"
@@ -23,13 +22,13 @@ int main(int argc, char* argv[]) {
     << std::endl;
 
     if (argc > 1) {
-        std::string argv1 = argv[1];
+        const std::string argv1 = argv[1];
         if (argv1 == "-h") {
             std::cout << helpStrStr.str();
             return 0;}
         if (argv1 == "-l") {
             if (argc > 2) {
-                std::string binFile = argv[2];
+                const std::string binFile = argv[2];
                 PeakBasedDist pkBsDist = PeakBasedDist::fromBinFile(binFile);
                 pkBsDist.chrNormalize();
                 PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
@@ -39,20 +38,20 @@ int main(int argc, char* argv[]) {
             return 1;}
         if (argc > 4)
         {
-            std::string chromFile = argv[1];
+            const std::string chromFile = argv[1];
             std::cout << "chromFile: " << chromFile << std::endl;
-            std::string barCodeFile = argv[2];
+            const std::string barCodeFile = argv[2];
             std::cout << "barCodeFile: " << barCodeFile << std::endl;
-            std::string fragFile = argv[3];
+            const std::string fragFile = argv[3];
             std::cout << "fragFile: " << fragFile << std::endl;
-            std::string windEvalStr = argv[4];
+            const std::string windEvalStr = argv[4];
             std::cout << "windEval: " << windEvalStr << std::endl;
 
             PeakBasedDist pkBsDist = PeakBasedDist::fromFlatFile(chromFile,barCodeFile);
             pkBsDist.addPeaksFromFragFile(fragFile,PeakBasedDist::strToUnsLong(windEvalStr));
 
             if (argc > 5) {
-                std::string outBindFile = argv[5];
+                const std::string outBindFile = argv[5];
                 std::cout << "outBindFile: " << outBindFile << std::endl;
                 pkBsDist.write2BinaryFile(outBindFile);
 
