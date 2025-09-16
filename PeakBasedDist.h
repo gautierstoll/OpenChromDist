@@ -6,9 +6,7 @@
 #define PEAKBASEDDIST_H
 #include <map>
 #include <cmath>
-#include <iostream>
 #include <optional>
-#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>

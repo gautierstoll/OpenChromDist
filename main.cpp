@@ -2,8 +2,6 @@
 #include <iostream>
 #include <sstream>
 #include "cmake-build-debug/version.h"
-#include <sstream>
-#include <vector>
 
 #include "PeakBasedDist.h"
 #include "PeakDistanceMatrix.h"
