@@ -5,7 +5,7 @@
 #include "PeakDistanceMatrix.h"
 
 #include <fstream>
-#include <iostream>
+
 
 PeakDistanceMatrix::PeakDistanceMatrix(const std::unordered_set<std::string> & bareCodeSet1,const std::unordered_set<std::string> & bareCodeSet2,
                                        const PeakBasedDist & pBasedDist1,const PeakBasedDist & pBasedDist2,const std::optional<std::string> & oPOutFile) :
@@ -56,12 +56,3 @@ outFile.close();
 
 }
 
-void PeakDistanceMatrix::writeMatrix() {
-    std::cout << "nb of rows: " << this->barCodeVect1.size() << " nb of columns: " << this->barCodeVect2.size();
-    std::cout << " flat matrix size " << this->distanceFlatMatrix.size() << std::endl;
-    auto itFlatMat = this->distanceFlatMatrix.begin();
-    for (const std::string & bC1:this->barCodeVect1) {
-        for (const std::string & bC2:this->barCodeVect2) {
-            std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
-            ++itFlatMat;}}
-}

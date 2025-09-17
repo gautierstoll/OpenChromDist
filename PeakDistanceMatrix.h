@@ -7,6 +7,7 @@
 #include <string>
 #include <unordered_set>
 #include <vector>
+#include <iostream>
 
 #include "PeakBasedDist.h"
 
@@ -66,7 +67,16 @@ public :
     /**
      * @brief Print the distance matrix in flat format
      */
-    void writeMatrix();
+    void writeMatrix() {
+        std::cout << "nb of rows: " << this->barCodeVect1.size() << " nb of columns: " << this->barCodeVect2.size();
+        std::cout << " flat matrix size " << this->distanceFlatMatrix.size() << std::endl;
+        auto itFlatMat = this->distanceFlatMatrix.begin();
+        for (const std::string & bC1:this->barCodeVect1) {
+            for (const std::string & bC2:this->barCodeVect2) {
+                std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+                ++itFlatMat;}}
+    }
+
 
 private:
     /**

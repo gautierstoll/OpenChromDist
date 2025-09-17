@@ -209,13 +209,3 @@ PeakBasedDist PeakBasedDist::fromFlatFile(const std::string & chrFile,const std:
     PeakBasedDist pkBaseDist = PeakBasedDist(chromosome,chrLength,bpStep,windSize,barCodeSet);
     return pkBaseDist;
 };
-
-unsigned long PeakBasedDist::strToUnsLong(const std::string & str) {
-    unsigned long unLong;
-    try {
-        unLong = std::stol(str);
-    }
-    catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert " + str); }
-    catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range " + str); }
-    return unLong;
-};

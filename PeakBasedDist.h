@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <stdexcept>
 
 /**
  * @class PeakBasedDist
@@ -97,7 +98,21 @@ public:
      */
     void write2BinaryFile(const std::string & binFile);
 
-    static unsigned long strToUnsLong(const std::string &);
+    /**
+     * Robust cast string to unsigned long
+     * @param string
+     * @return unsigned long
+     */
+    static unsigned long strToUnsLong(const std::string & str) {
+        unsigned long unLong;
+        try {
+            unLong = std::stol(str);
+        }
+        catch (const std::invalid_argument& e) { throw std::runtime_error("Failed to convert " + str); }
+        catch (const std::out_of_range& e) { throw std::runtime_error("Out fo range " + str); }
+        return unLong;
+    };
+
 };
 
 #endif //PEAKBASEDDIST_H
