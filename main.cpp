@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include "cmake-build-debug/version.h"
+#include "version.h"
 
 #include "PeakBasedDist.h"
 #include "PeakDistanceMatrix.h"

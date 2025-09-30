@@ -7,7 +7,7 @@ message(STATUS "Project version: ${PROJECT_VERSION}")
 
 configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in   # template dans le dossier source
-        ${CMAKE_CURRENT_BINARY_DIR}/version.h      # generated file by build command
+        ${CMAKE_CURRENT_SOURCE_DIR}/version.h      # generated file by build command
         @ONLY
 )
 
