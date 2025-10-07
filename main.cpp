@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     << "    barCodeFile contains a list of barcode separated by newline\n"
     << "    with no output binary file, distance matrix is directly computed\n\n"
     << "For computing distance matrix from binary file of distribution: \n"
-    <<  "  OpenChromDist -l binFile\n\n"
+    <<  "  OpenChromDist -l binFile (optional)outMatrixFile\n\n"
     << "For help:\n"
     << "  OpenChromDist -h\n"
     << std::endl;
@@ -29,10 +29,13 @@ int main(int argc, char* argv[]) {
         if (argv1 == "-l") {
             if (argc > 2) {
                 const std::string binFile = argv[2];
+                std::optional<std::string> fileName = std::nullopt;
+                if (argc > 3) {fileName = argv[3]; }
                 PeakBasedDist pkBsDist = PeakBasedDist::fromBinFile(binFile);
                 pkBsDist.chrNormalize();
                 PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
-                pkDistanceMatrix.writeMatrix();
+                std::cout << "start wirting distance matrix";
+                pkDistanceMatrix.writeMatrix(fileName);
                 return 0;}
             std::cerr << "No binary file\n\n" << helpStrStr.str();
             return 1;}

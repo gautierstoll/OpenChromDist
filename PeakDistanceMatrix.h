@@ -8,6 +8,8 @@
 #include <unordered_set>
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <optional>
 
 #include "PeakBasedDist.h"
 
@@ -65,16 +67,31 @@ public :
     PeakDistanceMatrix(bareCodeSet,bareCodeSet,pBasedDist,pBasedDist, outFile) {}
 
     /**
-     * @brief Print the distance matrix in flat format
+     * @brief Write distance matrix
+     * @param fileName optional file name
      */
-    void writeMatrix() {
+    void writeMatrix(const std::optional<std::string>& fileName = std::nullopt) {
+        std::ostream* outStream;
+        std::ofstream outFile;
+
+        if (fileName.has_value()) {
+            outFile.open(fileName.value());
+            if (!outFile) {
+                std::cerr << "Error opening file: " << fileName.value() << std::endl;
+                return;
+            }
+            outStream = &outFile;
+        } else {
+            outStream = &std::cout;
+        }
         std::cout << "nb of rows: " << this->barCodeVect1.size() << " nb of columns: " << this->barCodeVect2.size();
         std::cout << " flat matrix size " << this->distanceFlatMatrix.size() << std::endl;
         auto itFlatMat = this->distanceFlatMatrix.begin();
         for (const std::string & bC1:this->barCodeVect1) {
             for (const std::string & bC2:this->barCodeVect2) {
-                std::cout << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
+                *outStream << bC1 << "\t" << bC2 << "\t" << *itFlatMat << std::endl;
                 ++itFlatMat;}}
+        outStream->flush();
     }
 
 
