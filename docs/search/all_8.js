@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['requirements_0',['Requirements',['../md_README.html#autotoc_md3',1,'']]],
-  ['run_1',['📦 Build and Run',['../md_README.html#autotoc_md2',1,'']]]
+  ['of_20distribution_3a_0',['For computing distance matrix from binary file of distribution:',['../md_README.html#autotoc_md7',1,'']]],
+  ['openchromdist_1',['OpenChromDist',['../md_README.html',1,'']]]
 ];

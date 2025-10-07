@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['yet_0',['Build (don&apos;t know exactly yet)',['../md_README.html#autotoc_md4',1,'']]]
+  ['windsize_0',['windSize',['../classPeakBasedDist.html#a31f64c59a6af28e043f8642c5170dd5b',1,'PeakBasedDist']]],
+  ['write2binaryfile_1',['write2BinaryFile',['../classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424',1,'PeakBasedDist']]],
+  ['writematrix_2',['writeMatrix',['../classPeakDistanceMatrix.html#ad20e05929b859fd030f4bc87e875184e',1,'PeakDistanceMatrix']]]
 ];

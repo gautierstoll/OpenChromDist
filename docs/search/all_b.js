@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['📦_20build_20and_20run_0',['📦 Build and Run',['../md_README.html#autotoc_md2',1,'']]]
+  ['singlepeakdist_0',['SinglePeakDist',['../classSinglePeakDist.html',1,'']]],
+  ['strtounslong_1',['strToUnsLong',['../classPeakBasedDist.html#adb5714ee825b17eb4d1cfbb3670bb528',1,'PeakBasedDist']]]
 ];

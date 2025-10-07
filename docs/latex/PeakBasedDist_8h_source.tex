@@ -9,48 +9,56 @@
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PEAKBASEDDIST\_H}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <map>}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <ostream>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \{\ \textcolor{comment}{//many\ cells,\ a\ unique\ chromosome}}
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}};\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}};\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}};\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}};\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}};\ }
-\DoxyCodeLine{00032\ \ \ \ \ std::unordered\_map<std::string,std::vector<double>>\ \mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}};\ }
-\DoxyCodeLine{00033\ \ \ \ \ std::unordered\_map<std::string,double>\ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}};\ }
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0}{PeakBasedDist}}(std::string\ \&\ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}},\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}},\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}},\ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \&\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ :}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}}(\mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}}),\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}(\mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}),\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}(\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}),\mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}}(\mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}}),\mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}}(\mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ std::string\ \&\ barCode\ :\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{\ \mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}}[barCode]=\ std::vector<double>((\mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}/\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}+1),0);}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}}[barCode]\ =\ NAN;\ \};}
-\DoxyCodeLine{00046\ \ \ \ \ \}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{fromBinFile}}(\textcolor{keyword}{const}\ std::string\ \&);}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \mbox{\hyperlink{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}{fromFlatFile}}(\textcolor{keyword}{const}\ std::string\ \&\ chrFile,\textcolor{keyword}{const}\ std::string\ \&barCodeFile);}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{addPeak}}(\textcolor{keyword}{const}\ std::string\ \&\ cellBarCode,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ position,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ count,\ std::optional<unsigned\ long>\ windEval);}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}{addPeaksFromFragFile}}(\textcolor{keyword}{const}\ std::string\ \&\ fragFile\ ,\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \&\ windEval);}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}{chrNormalize}}()\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ std::string\ \&\ barCode\ :\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}}[barCode]\ =\ ((this-\/>\mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}})[barCode].back());}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \ \ \};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2BinaryFile}}(\textcolor{keyword}{const}\ std::string\ \&\ binFile);}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ strToUnsLong(\textcolor{keyword}{const}\ std::string\ \&);}
-\DoxyCodeLine{00103\ \};}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PEAKBASEDDIST\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \{\ \textcolor{comment}{//many\ cells,\ a\ unique\ chromosome}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}};\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}};\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::unordered\_map<std::string,std::vector<double>>\ \mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::unordered\_map<std::string,double>\ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPeakBasedDist_a9e56d3c0e4297a4c1f776c3427702fd0}{PeakBasedDist}}(std::string\ \&\ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}},\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}},\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}},\ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \&\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ :}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}}(\mbox{\hyperlink{classPeakBasedDist_a31c8117337e766c10d8d8b6e7e4bee09}{chromosome}}),\ \mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}(\mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}),\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}(\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}),\mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}}(\mbox{\hyperlink{classPeakBasedDist_a31f64c59a6af28e043f8642c5170dd5b}{windSize}}),\mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}}(\mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ std::string\ \&\ barCode\ :\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{\ \mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}}[barCode]=\ std::vector<double>((\mbox{\hyperlink{classPeakBasedDist_a4028fe05cac1967ebd39768c6517e9df}{chrLength}}/\mbox{\hyperlink{classPeakBasedDist_a6055b04ce2c49fd846ee1eb8c907db96}{bpStep}}+1),0);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}}[barCode]\ =\ NAN;\ \};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \mbox{\hyperlink{classPeakBasedDist_a0efb006b7e56aca1adfd6bb8e58d14ab}{fromBinFile}}(\textcolor{keyword}{const}\ std::string\ \&);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPeakBasedDist}{PeakBasedDist}}\ \mbox{\hyperlink{classPeakBasedDist_acce1090b92329aa9d4f6bc94ed850ddb}{fromFlatFile}}(\textcolor{keyword}{const}\ std::string\ \&\ chrFile,\textcolor{keyword}{const}\ std::string\ \&barCodeFile);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_ad9732e92a350cc82f469f8612efc6657}{addPeak}}(\textcolor{keyword}{const}\ std::string\ \&\ cellBarCode,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ position,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ count,\ std::optional<unsigned\ long>\ windEval);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_ab1cbb045f227193a6eeb6b2ce9bf7f9b}{addPeaksFromFragFile}}(\textcolor{keyword}{const}\ std::string\ \&\ fragFile\ ,\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \&\ windEval);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_a8b7492cccd20f870de35ce82e8fc918e}{chrNormalize}}()\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ std::string\ \&\ barCode\ :\ \mbox{\hyperlink{classPeakBasedDist_a67bcb2fb67935c3ccabedc4450faac59}{barCodeSet}})\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPeakBasedDist_a7055cf566bac3c995d4cf9dfea0dd446}{normFactor}}[barCode]\ =\ ((this-\/>\mbox{\hyperlink{classPeakBasedDist_af7af03f129d5fdabd0f108229ae1674f}{cumulUnnormProb}})[barCode].back());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPeakBasedDist_afda6689abc313f42024e1814d3b8c424}{write2BinaryFile}}(\textcolor{keyword}{const}\ std::string\ \&\ binFile);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classPeakBasedDist_adb5714ee825b17eb4d1cfbb3670bb528}{strToUnsLong}}(\textcolor{keyword}{const}\ std::string\ \&\ str)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ unLong;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ unLong\ =\ std::stol(str);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::invalid\_argument\&\ e)\ \{\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ convert\ "{}}\ +\ str);\ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Out\ fo\ range\ "{}}\ +\ str);\ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ unLong;}
+\DoxyCodeLine{00114\ \ \ \ \ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PEAKBASEDDIST\_H}}
 
 \end{DoxyCode}

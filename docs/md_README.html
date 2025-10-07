@@ -74,7 +74,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> C++ API for estimating gaussian-based open chromatin distribution from ATAC seq data</p>
 <p>Current version number in CMakeLists.txt</p>
-<p>Roxygen generated <a href="https://gautierstoll.github.io/OpenChromDist/index.html">doc</a></p>
+<p>Doxygen generated <a href="https://gautierstoll.github.io/OpenChromDist/index.html">doc</a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 🛠 Features</h1>
 <ul>
@@ -91,8 +91,33 @@ Requirements</h2>
 </ul>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Build</h2>
-<p>```bash cd OpenChromDist/ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-debug cmake &ndash;build ./cmake-build-debug </p>
-</div></div><!-- contents -->
+<p>Fast compilattion </p><div class="fragment"><div class="line">cd OpenChromDist/</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-debug</div>
+<div class="line">cmake --build ./cmake-build-debug</div>
+</div><!-- fragment --><p>Optimzed speed </p><div class="fragment"><div class="line">cd OpenChromDist/</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S . -B ./cmake-build-release</div>
+<div class="line">cmake --build ./cmake-build-release</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+Usage</h2>
+<h3><a class="anchor" id="autotoc_md6"></a>
+For creating distribution:</h3>
+<div class="fragment"><div class="line">OpenChromDist chromFile barCodeFile fragFile windEval outBindFile</div>
+</div><!-- fragment --><p> chromFile contains</p>
+<p>CHROMOSOME=</p>
+<p>CHRLENGTH=</p>
+<p>BPSTEP=</p>
+<p>WINDSIZE=</p>
+<p>fragFile is a list a ATAC hits.</p>
+<p>barCodeFile contains a list of barcodes separated by newline.</p>
+<p>windEval is the window size (in bp) on which probability distribution is evaluated given a peak. It is an estimation parameters that should be mixed with WINDSIZE which defines the sd of the distribution.</p>
+<p>With no output binary file, distance matrix is directly computed.</p>
+<h3><a class="anchor" id="autotoc_md7"></a>
+For computing distance matrix from binary file of distribution:</h3>
+<div class="fragment"><div class="line">OpenChromDist -l binFile</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
+For help:</h3>
+<div class="fragment"><div class="line">OpenChromDist -h</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

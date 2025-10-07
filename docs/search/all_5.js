@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normfactor_0',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
+  ['help_3a_0',['For help:',['../md_README.html#autotoc_md8',1,'']]]
 ];

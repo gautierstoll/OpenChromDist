@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['write2binaryfile_0',['write2BinaryFile',['../classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424',1,'PeakBasedDist']]],
-  ['writematrix_1',['writeMatrix',['../classPeakDistanceMatrix.html#a6e6637d73469cc8748875056f232700f',1,'PeakDistanceMatrix']]]
+  ['strtounslong_0',['strToUnsLong',['../classPeakBasedDist.html#adb5714ee825b17eb4d1cfbb3670bb528',1,'PeakBasedDist']]]
 ];
