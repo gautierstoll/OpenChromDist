@@ -18,6 +18,7 @@ set(CMAKE_CXX_STANDARD 20)
  add_executable(OpenChromDist main.cpp
          PeakBasedDist.cpp
          PeakDistanceMatrix.cpp
+         CellData.h
  )
 
 
