@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
                 PeakBasedDist pkBsDist = PeakBasedDist::fromBinFile(binFile);
                 pkBsDist.chrNormalize();
                 PeakDistanceMatrix pkDistanceMatrix(pkBsDist.barCodeSet,pkBsDist);
-                std::cout << "start wirting distance matrix";
+                std::cout << "start writing distance matrix";
                 pkDistanceMatrix.writeMatrix(fileName);
                 return 0;}
             std::cerr << "No binary file\n\n" << helpStrStr.str();

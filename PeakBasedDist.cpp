@@ -113,7 +113,7 @@ void PeakBasedDist::write2BinaryFile(const std::string & binFile) {
 
 PeakBasedDist PeakBasedDist::fromBinFile(const std::string & binFile) {
     std::ifstream ifs(binFile, std::ios::binary);
-    if (!ifs) throw std::runtime_error("Failed to open file");
+    if (!ifs) throw std::runtime_error("Failed to open binary file");
 
     uint32_t len;
     ifs.read(reinterpret_cast<char*>(&len), sizeof(len));
