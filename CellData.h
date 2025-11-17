@@ -15,23 +15,47 @@
 
 #endif //OPENCHROMDIST_CELLDATA_H
 
+/**
+ *@brief concept descibing a cell state
+ */
 template<typename C>
-concept CellInOut = requires(C c,std::vector<std::string> vectS) {
-    { c.update(vectS) } -> std::same_as<void>;
+concept CellInOut = requires(C c,const std::string s) {
+    { c.update(s) } -> std::same_as<void>;
     {c.epilogue()} -> std::same_as<void>;
     {c.toString()} -> std::same_as<std::string>;
 };
 
+/**
+ * @brief abstract classe of cell data
+ * @tparam Cell cell state
+ */
 template<CellInOut Cell>
 class CellData {
 public:
-    CellData(const std::vector<std::string> & barCodes) : vectData(barCodes.size()), barCodes(barCodes) {
+    /**
+     * @brief contruct an emply vector of cells
+     * @param barCodes list of barcodes tha idenfy cells
+     */
+    explicit CellData(const std::vector<std::string> & barCodes) : vectData(barCodes.size()), barCodes(barCodes) {
         barCodesChar.reserve(barCodes.size());
-        for (const auto& k : barCodes) {
-            barCodesChar.push_back(const_cast<char*>(k.c_str()));
-        }
+        for (const auto& k : barCodes) {barCodesChar.push_back(const_cast<char*>(k.c_str()));}
     }
+
+    static std::vector<std::string> BarCodesFromFlatFile(const std::string &barCodeFile) {
+        std::ifstream barCodeFStr(barCodeFile);
+        std::vector<std::string> barCodes;
+        barCodes.reserve(10000);
+        std::string barCode;
+        while (barCodeFStr >> barCode) barCodes.push_back(std::move(barCode));
+        return(barCodes);
+    }
+
     const std::vector<std::string> & barCodes;
+
+    /**
+     * @brief read fragment files
+     * @param fragFile
+     */
     void readFragFile(const std::string & fragFile) {
     std::ifstream fragFStr(fragFile);
     if (!fragFStr.is_open()) throw std::runtime_error("Failed to open fragment file");
@@ -43,24 +67,23 @@ public:
             std::stringstream lineStream(line);
             std::vector<std::string> tokenVector;
             std::string token;
-            while (getline(lineStream, token,'\t')) {
-                tokenVector.push_back(token);
-            }
+            while (getline(lineStream, token,'\t')) {tokenVector.push_back(token);}
             if (tokenVector.size() >= 5) {
                 std::cout << "\r File Line: " << fileLine <<
                         " Add bareCode: " << tokenVector[3] << " at position " << tokenVector[1] << std::flush;
                 int index = cmph_search(hashBarCodes,tokenVector[3].c_str(),static_cast<cmph_uint32>(tokenVector[3].size()));
-                vectData[index].update(tokenVector);
+                vectData[index].update(line);
             } else {throw std::runtime_error("Bad line in fragment file "+line);}
         }
     }
     std::cout << std::endl;
 }
-
-
-    void writeTsvFile(const std::string & outTsvFile) {
-
-    };
+    /**
+     * @brief write cell states to cout
+     */
+    void toCout() {
+        for (size_t i =0; i < barCodes.size() ; i++) {std::cout << barCodes[i] << "\t" <<  vectData[i].toString() << "\n";}
+    }
 
 protected:
     std::vector<Cell> vectData;

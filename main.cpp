@@ -1,6 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+
+#include "CellDataMeanVar.h"
 #include "version.h"
 
 #include "PeakBasedDist.h"
@@ -17,6 +19,8 @@ int main(int argc, char* argv[]) {
     << "    with no output binary file, distance matrix is directly computed\n\n"
     << "For computing distance matrix from binary file of distribution: \n"
     <<  "  OpenChromDist -l binFile (optional)outMatrixFile\n\n"
+    << "For processing fragment file: \n"
+    << " OpenChromDist -p barCodeFile fragFile\n\n"
     << "For help:\n"
     << "  OpenChromDist -h\n"
     << std::endl;
@@ -39,6 +43,16 @@ int main(int argc, char* argv[]) {
                 return 0;}
             std::cerr << "No binary file\n\n" << helpStrStr.str();
             return 1;}
+        if (argv1 == "-p") {
+            if (argc > 3) {
+                const std::string barCodeFile = argv[2];
+                const std::string frFile = argv[3];
+                CellDataMeanVar CDMeanVar = CellDataMeanVar::fromFlatFile(barCodeFile);
+                CDMeanVar.readFragFile(frFile);
+                CDMeanVar.toCout();
+            }
+            std::cerr << "No barCodeFile and/or fragFile\n\n" << helpStrStr.str();
+        }
         if (argc > 4)
         {
             const std::string chromFile = argv[1];

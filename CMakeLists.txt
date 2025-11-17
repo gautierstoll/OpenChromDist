@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 project(OpenChromDist
-        VERSION 0.9.1
+        VERSION 0.10.1
         LANGUAGES CXX)
 
 message(STATUS "Project version: ${PROJECT_VERSION}")
@@ -19,9 +19,13 @@ set(CMAKE_CXX_STANDARD 20)
          PeakBasedDist.cpp
          PeakDistanceMatrix.cpp
          CellData.h
+         CellInOutMeanVar.h
+         CellDataMeanVar.h
+         CellData.h
+         CellDataMeanVar.h
+         CellInOutMeanVar.h
  )
-
-
+target_link_libraries(OpenChromDist PRIVATE cmph)
 target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Release>:-O3 -march=native -flto -funroll-loops>)
 
 target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Debug>:-O0 -g -Wall>)
