@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['matrix_20from_20binary_20file_20of_20distribution_3a_0',['For computing distance matrix from binary file of distribution:',['../md_README.html#autotoc_md7',1,'']]]
+  ['hashbarcodes_0',['hashBarCodes',['../classCellData.html#ad3554035e843b92f13f0acbe78f4c13a',1,'CellData']]],
+  ['help_3a_1',['For help:',['../md_README.html#autotoc_md8',1,'']]]
 ];

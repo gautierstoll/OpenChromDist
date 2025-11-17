@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['frombinfile_0',['fromBinFile',['../classPeakBasedDist.html#a0efb006b7e56aca1adfd6bb8e58d14ab',1,'PeakBasedDist']]],
-  ['fromflatfile_1',['fromFlatFile',['../classPeakBasedDist.html#acce1090b92329aa9d4f6bc94ed850ddb',1,'PeakBasedDist']]]
+  ['celldata_0',['CellData',['../classCellData.html#a074f237a6ac3b617a20a578734c95b9a',1,'CellData']]],
+  ['chrnormalize_1',['chrNormalize',['../classPeakBasedDist.html#a8b7492cccd20f870de35ce82e8fc918e',1,'PeakBasedDist']]]
 ];

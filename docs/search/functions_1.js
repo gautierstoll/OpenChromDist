@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chrnormalize_0',['chrNormalize',['../classPeakBasedDist.html#a8b7492cccd20f870de35ce82e8fc918e',1,'PeakBasedDist']]]
+  ['barcodesfromflatfile_0',['BarCodesFromFlatFile',['../classCellData.html#abf82a72fd7a41f7ee893bbb7280fcc48',1,'CellData']]]
 ];

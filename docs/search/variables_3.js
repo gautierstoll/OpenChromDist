@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normfactor_0',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
+  ['hashbarcodes_0',['hashBarCodes',['../classCellData.html#ad3554035e843b92f13f0acbe78f4c13a',1,'CellData']]]
 ];

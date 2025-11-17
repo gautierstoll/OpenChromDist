@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD 20)
          CellDataMeanVar.h
          CellInOutMeanVar.h
  )
-target_link_libraries(OpenChromDist PRIVATE cmph)
+target_link_libraries(OpenChromDist PRIVATE /usr/lib/x86_64-linux-gnu/libcmph.a)
 target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Release>:-O3 -march=native -flto -funroll-loops>)
 
 target_compile_options(OpenChromDist PRIVATE $<$<CONFIG:Debug>:-O0 -g -Wall>)

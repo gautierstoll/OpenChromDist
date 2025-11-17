@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['of_20distribution_3a_0',['For computing distance matrix from binary file of distribution:',['../md_README.html#autotoc_md7',1,'']]],
-  ['openchromdist_1',['OpenChromDist',['../md_README.html',1,'']]]
+  ['nbpeak_0',['nbPeak',['../classCellInOutMeanVar.html#a1b157cc1d24bbf0bf588db50d93eb31f',1,'CellInOutMeanVar']]],
+  ['normfactor_1',['normFactor',['../classPeakBasedDist.html#a7055cf566bac3c995d4cf9dfea0dd446',1,'PeakBasedDist']]]
 ];

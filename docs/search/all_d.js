@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['windsize_0',['windSize',['../classPeakBasedDist.html#a31f64c59a6af28e043f8642c5170dd5b',1,'PeakBasedDist']]],
-  ['write2binaryfile_1',['write2BinaryFile',['../classPeakBasedDist.html#afda6689abc313f42024e1814d3b8c424',1,'PeakBasedDist']]],
-  ['writematrix_2',['writeMatrix',['../classPeakDistanceMatrix.html#ad20e05929b859fd030f4bc87e875184e',1,'PeakDistanceMatrix']]]
+  ['tocout_0',['toCout',['../classCellData.html#a5dc680406384a0d033cc8721e160cbb6',1,'CellData']]],
+  ['tostring_1',['toString',['../classCellInOutMeanVar.html#ad2a9c35270b055de0de4dd8506104575',1,'CellInOutMeanVar']]]
 ];

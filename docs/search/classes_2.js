@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['singlepeakdist_0',['SinglePeakDist',['../classSinglePeakDist.html',1,'']]]
+  ['peakbaseddist_0',['PeakBasedDist',['../classPeakBasedDist.html',1,'']]],
+  ['peakdistancematrix_1',['PeakDistanceMatrix',['../classPeakDistanceMatrix.html',1,'']]]
 ];

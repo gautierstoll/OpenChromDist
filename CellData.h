@@ -16,12 +16,15 @@
 #endif //OPENCHROMDIST_CELLDATA_H
 
 /**
- *@brief concept descibing a cell state
+ *@brief concept for cell state
  */
 template<typename C>
 concept CellInOut = requires(C c,const std::string s) {
+    /// update the state from line of text
     { c.update(s) } -> std::same_as<void>;
+    /// final algorthm after reading all fragments
     {c.epilogue()} -> std::same_as<void>;
+    /// txt for export
     {c.toString()} -> std::same_as<std::string>;
 };
 
@@ -33,14 +36,19 @@ template<CellInOut Cell>
 class CellData {
 public:
     /**
-     * @brief contruct an emply vector of cells
-     * @param barCodes list of barcodes tha idenfy cells
+     * @brief construct an empty vector of cells
+     * @param barCodes list of barcodes tha identify cells
      */
     explicit CellData(const std::vector<std::string> & barCodes) : vectData(barCodes.size()), barCodes(barCodes) {
         barCodesChar.reserve(barCodes.size());
         for (const auto& k : barCodes) {barCodesChar.push_back(const_cast<char*>(k.c_str()));}
     }
 
+    /**
+     *
+     * @param barCodeFile
+     * @return static method for concrete constructor that need barCode list from a file
+     */
     static std::vector<std::string> BarCodesFromFlatFile(const std::string &barCodeFile) {
         std::ifstream barCodeFStr(barCodeFile);
         std::vector<std::string> barCodes;
@@ -50,7 +58,7 @@ public:
         return(barCodes);
     }
 
-    const std::vector<std::string> & barCodes;
+    const std::vector<std::string> & barCodes; ///< vector of barCodes
 
     /**
      * @brief read fragment files
@@ -86,10 +94,10 @@ public:
     }
 
 protected:
-    std::vector<Cell> vectData;
-    std::vector<char *> barCodesChar;
-    cmph_io_adapter_t *source = cmph_io_vector_adapter(barCodesChar.data(),barCodes.size());
-    cmph_config_t *config = cmph_config_new(source);
-    cmph_t *hashBarCodes = cmph_new(config);
+    std::vector<Cell> vectData; ///< vector of cell states, same order than barcodes
+    std::vector<char *> barCodesChar; ///< for optimized search
+    cmph_io_adapter_t *source = cmph_io_vector_adapter(barCodesChar.data(),barCodes.size()); ///< for optimized search
+    cmph_config_t *config = cmph_config_new(source); ///< for optimized search
+    cmph_t *hashBarCodes = cmph_new(config); ///< for optimized search
 };
 

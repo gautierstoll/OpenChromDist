@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['peakbaseddist_0',['PeakBasedDist',['../classPeakBasedDist.html',1,'']]],
-  ['peakdistancematrix_1',['PeakDistanceMatrix',['../classPeakDistanceMatrix.html',1,'']]]
+  ['celldata_0',['CellData',['../classCellData.html',1,'']]],
+  ['celldata_3c_20cellinoutmeanvar_20_3e_1',['CellData&lt; CellInOutMeanVar &gt;',['../classCellData.html',1,'']]],
+  ['celldatameanvar_2',['CellDataMeanVar',['../classCellDataMeanVar.html',1,'']]],
+  ['cellinoutmeanvar_3',['CellInOutMeanVar',['../classCellInOutMeanVar.html',1,'']]]
 ];
