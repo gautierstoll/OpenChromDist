@@ -36,17 +36,21 @@ barCodeVect1(bareCodeSet1.begin(),bareCodeSet1.end()),barCodeVect2(bareCodeSet2.
         size_t indexVect2 = 0;
         for (const std::string &  bareCode2:barCodeVect2) {
             indexVect2++;
-            std::cout << "\rIndex1: " << indexVect1 << " Index2: " << indexVect2 << std::flush;
-            auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode1);
+            //std::cout << "\rIndex1: " << indexVect1 << " Index2: " << indexVect2 << std::flush;
+            std::cout << "BarcCode1: " << bareCode1 << " BareCode2: " << bareCode2 << std::endl;
+            auto itBareCode2 = pBasedDist2.cumulUnnormProb.find(bareCode2);
             if (itBareCode2 == pBasedDist2.cumulUnnormProb.end()) {throw std::invalid_argument(bareCode2 + " not found in second distribution");}
             double normFactorBC2 = pBasedDist2.normFactor.find(bareCode2)->second;
             if (normFactorBC2 == NAN) {normFactorBC2 = 1.0;}
             double maxAbs = 0.0;
             for (size_t cumlProbIndex=0;cumlProbIndex< (itBareCode1 -> second).size();cumlProbIndex++) {
+                if ((cumlProbIndex< 800) && ((indexVect1 == 1 && indexVect2 == 2) || (indexVect1 == 2 && indexVect2 == 1)))
+                {std::cout << std::abs((itBareCode1 -> second)[cumlProbIndex]/normFactorBC1 - (itBareCode2 -> second)[cumlProbIndex]/normFactorBC2) << "\t" ;}
                 maxAbs = std::max(maxAbs,std::abs((itBareCode1 -> second)[cumlProbIndex]/normFactorBC1 - (itBareCode2 -> second)[cumlProbIndex]/normFactorBC2));
             }
+            std::cout << std::endl;
             if (oPOutFile.has_value()) {
-             outFile << bareCode1 << "\t" << bareCode2 << "\t" << maxAbs << std::endl;
+                outFile << bareCode1 << "\t" << bareCode2 << "\t" << maxAbs << std::endl;
             } else {
                 distanceFlatMatrix.push_back(maxAbs);
             }
